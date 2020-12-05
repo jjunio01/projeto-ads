@@ -9,7 +9,7 @@ Projeto como requisito para aprovação na disciplina do curso de ADS do IFPE Ca
   2. Faça uma cópia local do projeto utilizando umas das seguintes sugestões:
   
         2.1 - No GitBash dentro da pasta de sua preferência execute o comando: 
-        `git clone https://github.com/jjunio01/projeto-lpoo.git`
+        `git clone <COLAR>`
         
           Na IDE Eclipse Abra o projeto localizado na pasta escolhida acima.
         
@@ -27,7 +27,7 @@ Projeto como requisito para aprovação na disciplina do curso de ADS do IFPE Ca
                             
   3. Adicione a referência ao reposítorio 'principal' do pojeto utilizando:
   
-    git remote add upstream https://github.com/jjunio01/projeto-lpoo.git
+    git remote add upstream https://github.com/jjunio01/projeto-ads.git
     
  4 . Sincronizando as bases:
  
