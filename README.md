@@ -7,15 +7,16 @@ Projeto como requisito para aprovação na disciplina do curso de ADS do IFPE Ca
   1. Realize um fork do repositório clicando no ícone correspondente localizado no canto superior direito; 
   
   2. Faça uma cópia local do projeto utilizando umas das seguintes sugestões:
-  
+            
+            
+        Clique em `Code` depois copie a URL da aba HTTPS.
+        
         2.1 - No GitBash dentro da pasta de sua preferência execute o comando: 
         `git clone <COLAR>`
         
           Na IDE Eclipse Abra o projeto localizado na pasta escolhida acima.
         
-        2.2 - Clique em `Code` depois copie a URL da aba HTTPS.
-        
-          Na IDE Eclipse acesse:
+        2.2 - Na IDE Eclipse acesse:
           
           
                 file -> import -> Git -> Projects from GIT (with smart import) -> Clone URI -> next -> 
