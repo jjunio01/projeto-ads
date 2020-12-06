@@ -60,7 +60,7 @@ Projeto como requisito para aprovação na disciplina do curso de ADS do IFPE Ca
 
 
 ## Colaboradores:
-  - Edrey Lucas dos Anjos Augusto
+  - [@Edreyl16](https://github.com/Edreyl16) Edrey Lucas dos Anjos Augusto
   - [@jjunio01](https://github.com/jjunio01) Jose Junio Araujo da Silva  
   - [@mikaelbr073](https://github.com/Mikaelbr073) Mikael Carvalho de Barros
   - [@PettersonDouglas](https://github.com/PettersonDouglas) Petterson Douglas Ataíde Silva
