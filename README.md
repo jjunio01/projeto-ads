@@ -57,6 +57,22 @@ Projeto como requisito para aprovação na disciplina do curso de ADS do IFPE Ca
 
 ### Diagrama de Classes
   ![DiagramaDeClasses](docs/DiagramaDeClasses.png)
+  
+  #### Diagrama de Classes - DataBase
+  ![DiagramaDeClasses](docs/DataBase.png)
+  
+  #### Diagrama de Classes - GerenciamentoCliente
+  ![DiagramaDeClasses](docs/GerenciamentoCliente.png)
+  
+  #### Diagrama de Classes - GerenciamentoEstoque
+  ![DiagramaDeClasses](docs/GerenciamentoEstoque.png)
+  
+  #### Diagrama de Classes - Pagamento
+  ![DiagramaDeClasses](docs/Pagamento.png)
+  
+  #### Diagrama de Classes - Vendas
+  ![DiagramaDeClasses](docs/Vendas.png)
+
 
 
 ## Colaboradores:
