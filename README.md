@@ -41,6 +41,8 @@ Projeto como requisito para aprovação na disciplina do curso de ADS do IFPE Ca
       
       
 5. Crie um branch para realizar suas contribuições:
+      
+      Utilize o nome do módulo que você está responsável como nome do branch.
 
     `git checkout -b <NOME DO BRANCH>`
   
