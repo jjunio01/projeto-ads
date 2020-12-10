@@ -8,17 +8,6 @@ import com.github.jjunio01.projeto.ads.entidades.Pessoa;
  * @author JJunio
  *
  */
-public interface ClienteDAO {
+public interface ClienteDAO extends DAO<Pessoa> {
 
-	
-	public void adicionarCliente(Pessoa cliente);
-
-	public Pessoa getCliente(int codigo);
-
-	public void removerCliente(int codigo);
-
-	public void atualizarCliente(Pessoa cliente);
-
-	public List<Pessoa> listarTodosClientes();
-	
 }

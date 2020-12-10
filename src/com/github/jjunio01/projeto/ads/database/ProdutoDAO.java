@@ -6,15 +6,6 @@ import java.util.List;
  * @author JJunio
  *
  */
-public interface ProdutoDAO {
+public interface ProdutoDAO extends DAO<Produto> {
 
-	public void adicionarProduto(Produto produto);
-
-	public Produto getProduto(int codigo);
-
-	public void removerProduto(int codigo);
-
-	public void atualizarProduto(Produto produto);
-
-	public List<Produto> listarTodosProdutos();
 }

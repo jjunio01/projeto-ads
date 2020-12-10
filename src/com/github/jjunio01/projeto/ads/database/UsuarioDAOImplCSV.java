@@ -1,24 +1,23 @@
 package com.github.jjunio01.projeto.ads.database;
 
-import java.io.FileInputStream;
 import java.util.List;
 
-import com.github.jjunio01.projeto.ads.entidades.Pessoa;
+import com.github.jjunio01.projeto.ads.entidades.Usuario;
 
 /**
  * @author JJunio
  *
  */
-public class ClienteDAOImpl implements ClienteDAO {
+public class UsuarioDAOImplCSV implements UsuarioDAO {
 
 	@Override
-	public void adicionar(Pessoa t) {
+	public void adicionar(Usuario t) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Pessoa consultar(int codigo) {
+	public Usuario consultar(int codigo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -30,13 +29,13 @@ public class ClienteDAOImpl implements ClienteDAO {
 	}
 
 	@Override
-	public void atualizar(Pessoa t) {
+	public void atualizar(Usuario t) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public List<Pessoa> listarTodos() {
+	public List<Usuario> listarTodos() {
 		// TODO Auto-generated method stub
 		return null;
 	}
