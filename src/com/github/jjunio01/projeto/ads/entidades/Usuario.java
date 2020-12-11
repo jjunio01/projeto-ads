@@ -1,17 +1,20 @@
 package com.github.jjunio01.projeto.ads.entidades;
 
+import java.io.Serializable;
+
 /**
  * @author JJunio
  *
  */
-public class Usuario {
+public class Usuario implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private String login;
 	private String senha;
-	
+
 	public Usuario() {
 	}
-	
+
 	public Usuario(String login, String senha) {
 		this.login = login;
 		this.senha = senha;
@@ -32,5 +35,4 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
 }
