@@ -78,11 +78,4 @@ public class UsuarioDAOImplCSV implements UsuarioDAO {
 
 		return listaUsuarios;
 	}
-
-	@Override
-	public Usuario consultar(int codigo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

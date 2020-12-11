@@ -17,7 +17,6 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 	}
 
-	@Override
 	public Pessoa consultar(int codigo) {
 		// TODO Auto-generated method stub
 		return null;

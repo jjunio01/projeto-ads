@@ -14,7 +14,6 @@ public class ProdutoDAOImplCSV implements ProdutoDAO {
 
 	}
 
-	@Override
 	public Produto consultar(int codigo) {
 		// TODO Auto-generated method stub
 		return null;
