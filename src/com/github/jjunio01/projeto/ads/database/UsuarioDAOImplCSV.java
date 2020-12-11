@@ -1,11 +1,11 @@
 package com.github.jjunio01.projeto.ads.database;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +19,16 @@ public class UsuarioDAOImplCSV implements UsuarioDAO {
 
 	@Override
 	public void adicionar(Usuario t) {
+		File file = new File(
+				"C:\\Users\\JJunio\\eclipse-workspace\\ProjetoLogicaOrientadaObjetos\\docs\\usuarioDataBase.csv");
+		try (BufferedWriter br = new BufferedWriter(new FileWriter(file, true))) {
 
+			br.write(t.getLogin() + "," + t.getSenha());
+			br.newLine();
+		} catch (IOException e) {
+			System.out.println();
+
+		}
 	}
 
 	@Override
@@ -27,7 +36,7 @@ public class UsuarioDAOImplCSV implements UsuarioDAO {
 
 		Usuario usuarioCadastrado = null;
 
-		String path = "C:\\Users\\JJunio\\eclipse-workspace\\ProjetoLogicaOrientadaObjetos\\docs\\usuarios.csv";
+		String path = "C:\\Users\\JJunio\\eclipse-workspace\\ProjetoLogicaOrientadaObjetos\\docs\\usuarioDataBase.csv";
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 
 			String line = br.readLine();
@@ -55,14 +64,14 @@ public class UsuarioDAOImplCSV implements UsuarioDAO {
 
 	@Override
 	public void atualizar(Usuario t) {
-		// TODO Auto-generated method stub
-
+		
+		
 	}
 
 	@Override
 	public List<Usuario> listarTodos() {
 		List<Usuario> listaUsuarios = new ArrayList<>();
-		String path = "C:\\Users\\JJunio\\eclipse-workspace\\ProjetoLogicaOrientadaObjetos\\docs\\usuarios.csv";
+		String path = "C:\\Users\\JJunio\\eclipse-workspace\\ProjetoLogicaOrientadaObjetos\\docs\\usuarioDataBase.csv";
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 
 			String line = br.readLine();
