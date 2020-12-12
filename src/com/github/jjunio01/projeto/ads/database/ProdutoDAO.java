@@ -5,7 +5,8 @@ import java.util.List;
 /**
  * @author JJunio
  *
- */
+ *
 public interface ProdutoDAO extends DAO<Produto> {
 
 }
+*/
