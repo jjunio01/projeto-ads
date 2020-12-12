@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
  */
 public class CupomVenda {
 
-	public static void mostrarCupom() {
-		JOptionPane.showInternalMessageDialog(null, "Parabéns sua compra foi realizada com sucesso!!");
+	public static void mostrarCupom(Vendas venda) {
+		JOptionPane.showInternalMessageDialog(null, venda.toString());
 	}
 }

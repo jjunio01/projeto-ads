@@ -44,7 +44,7 @@ public class Vendas {
 	}
 
 	public void gerarCupom() {
-		CupomVenda.mostrarCupom();
+		CupomVenda.mostrarCupom(this);
 	}
 
 	public Carrinho getCarrinho() {

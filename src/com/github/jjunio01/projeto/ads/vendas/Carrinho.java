@@ -25,19 +25,29 @@ public class Carrinho {
 	 * this.listaProdutos.add(produto); }
 	 */
 
-	public String calcularPrecoTotal() {
-
-		setPrecoTotal(0);
-		return "";
+	public void calcularPrecoTotal() {
+		/**
+		for (int i = 0; i < this.ListaProdutos.size(); i++) {
+			this.precoTotal += ListaProdutos.get(i).getValor() * ListaProdutos.get(i).getQuantidade();
+		}
+		*/
 	}
 
 	public double getPrecoTotal() {
 		return precoTotal;
 	}
-
-	public void setPrecoTotal(double precoTotal) {
-		this.precoTotal = precoTotal;
+	
+	@Override
+	public String toString() {
+		String carrinho = "";
+		/**
+		for (int i = 0; i < this.ListaProdutos.size(); i++) {
+			carrinho += "Nome: " + ListaProdutos.get(i).getNome() +
+					"\nValor unitário R$: " + ListaProdutos.get(i).getValor()+
+					"\nQuantidade :" + ListaProdutos.get(i).getQuantidade() + "\n";
+		}
+		*/
+		return carrinho;
 	}
-
 
 }
