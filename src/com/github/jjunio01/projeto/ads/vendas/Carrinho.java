@@ -10,7 +10,6 @@ public class Carrinho {
 
 	// private ArrayList<Produto> listaProdutos;
 	private double precoTotal;
-	private EnumVenda status;
 
 	public void pegarCarrinho() {
 		/* listaProdutos = new ArrayList<>(); */
@@ -40,12 +39,5 @@ public class Carrinho {
 		this.precoTotal = precoTotal;
 	}
 
-	public EnumVenda getStatus() {
-		return status;
-	}
-
-	public void setStatus(EnumVenda status) {
-		this.status = status;
-	}
 
 }
