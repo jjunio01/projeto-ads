@@ -12,7 +12,7 @@ import com.github.jjunio01.projeto.ads.entidades.Usuario;
  * @author JJunio
  *
  */
-public class UsuarioDAOImplCSV implements UsuarioDAO {
+public class UsuarioDAOImplTxt implements UsuarioDAO {
 
 	private final String caminho = "databaseUsuarios.txt";
 

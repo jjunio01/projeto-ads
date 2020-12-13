@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.github.jjunio01.projeto.ads.estoque;
 
 import java.io.Serializable;
