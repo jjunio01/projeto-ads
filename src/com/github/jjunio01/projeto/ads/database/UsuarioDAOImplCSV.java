@@ -1,13 +1,10 @@
 package com.github.jjunio01.projeto.ads.database;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import com.github.jjunio01.projeto.ads.entidades.Usuario;
 
@@ -17,74 +14,77 @@ import com.github.jjunio01.projeto.ads.entidades.Usuario;
  */
 public class UsuarioDAOImplCSV implements UsuarioDAO {
 
-	@Override
-	public void adicionar(Usuario t) {
-		File file = new File(
-				"C:\\Users\\JJunio\\eclipse-workspace\\ProjetoLogicaOrientadaObjetos\\docs\\usuarioDataBase.csv");
-		try (BufferedWriter br = new BufferedWriter(new FileWriter(file, true))) {
-
-			br.write(t.getLogin() + "," + t.getSenha());
-			br.newLine();
-		} catch (IOException e) {
-			System.out.println();
-
-		}
-	}
+	private final String caminho = "databaseUsuarios.txt";
 
 	@Override
-	public Usuario consultar(String login) throws IOException {
+	public void remover(String login) {
 
-		Usuario usuarioCadastrado = null;
-
-		String path = "C:\\Users\\JJunio\\eclipse-workspace\\ProjetoLogicaOrientadaObjetos\\docs\\usuarioDataBase.csv";
-		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-
-			String line = br.readLine();
-			while (line != null) {
-
-				String[] vect = line.split(",");
-				if (vect[0].equals(login)) {
-					usuarioCadastrado = new Usuario(login, vect[1]);
-					break;
-				}
-				line = br.readLine();
+		List<Usuario> usuarioCadastrados = listarTodos();
+		for (Usuario cadastrado : usuarioCadastrados) {
+			if (cadastrado.getLogin().equals(login)) {
+				usuarioCadastrados.remove(cadastrado);
+				adicionarLista(usuarioCadastrados);
+				JOptionPane.showMessageDialog(null, "Usuário removido com sucesso.", "Sistema CompreAqui",
+						JOptionPane.INFORMATION_MESSAGE);
+				return;
 			}
-		} catch (IOException e) {
-			System.out.println("Erro: " + e.getMessage());
 		}
 
-		return usuarioCadastrado;
-	}
-
-	@Override
-	public void remover(int codigo) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void atualizar(Usuario t) {
-		
-		
 	}
 
 	@Override
 	public List<Usuario> listarTodos() {
-		List<Usuario> listaUsuarios = new ArrayList<>();
-		String path = "C:\\Users\\JJunio\\eclipse-workspace\\ProjetoLogicaOrientadaObjetos\\docs\\usuarioDataBase.csv";
-		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 
-			String line = br.readLine();
-			while (line != null) {
+		try {
+			return (ArrayList<Usuario>) FileUtil.recuperarInformacoes(caminho);
 
-				String[] vect = line.split(",");
-				listaUsuarios.add(new Usuario(vect[0], vect[1]));
-				line = br.readLine();
-			}
+		} catch (ClassNotFoundException | IOException e) {
+
+			JOptionPane.showMessageDialog(null, "Erro ao acessar banco de dados.", "Sistema CompreAqui",
+					JOptionPane.ERROR_MESSAGE);
+			return null;
+		}
+	}
+
+	@Override
+	public void adicionar(Usuario usuario) {
+
+		List<Usuario> usuarioCadastrados = listarTodos();
+		usuarioCadastrados.add(usuario);
+		try {
+			FileUtil.gravarInformacoes(usuarioCadastrados, caminho);
 		} catch (IOException e) {
-			System.out.println("Erro: " + e.getMessage());
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void atualizar(Usuario t) {
+
+		List<Usuario> usuarioCadastrados = listarTodos();
+		for (Usuario cadastrado : usuarioCadastrados) {
+			if (cadastrado.getLogin().equals(t.getLogin())) {
+				usuarioCadastrados.remove(cadastrado);
+				usuarioCadastrados.add(t);
+				adicionarLista(usuarioCadastrados);
+				JOptionPane.showMessageDialog(null, "Usuário atualizado com sucesso.", "Sistema CompreAqui",
+						JOptionPane.INFORMATION_MESSAGE);
+				return;
+			}
 		}
 
-		return listaUsuarios;
 	}
+
+	@Override
+	public void adicionarLista(List<Usuario> t) {
+		try {
+			FileUtil.gravarInformacoes(t, caminho);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 }

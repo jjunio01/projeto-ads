@@ -10,9 +10,9 @@ public interface DAO<T> {
 
 	public void adicionar(T t);
 
-	public void remover(int codigo);
-
 	public void atualizar(T t);
 
 	public List<T> listarTodos();
+
+	void adicionarLista(List<T> t);
 }
