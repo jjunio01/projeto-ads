@@ -24,6 +24,7 @@ public class EstoqueDAOImplTxt implements EstoqueDAO {
 
 	}
 
+	@Override
 	public Estoque consultar(int codigo) {
 		List<Estoque> estoqueAtual = listarTodos();
 
@@ -36,6 +37,7 @@ public class EstoqueDAOImplTxt implements EstoqueDAO {
 		return null;
 	}
 
+	@Override
 	public void remover(Estoque estoque) {
 
 		List<Estoque> estoqueDisponivel = listarTodos();
