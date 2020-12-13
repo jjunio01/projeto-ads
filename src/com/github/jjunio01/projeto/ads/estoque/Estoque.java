@@ -3,14 +3,32 @@
  */
 package com.github.jjunio01.projeto.ads.estoque;
 
+import java.io.Serializable;
+
 /**
  * @author Petterson
  *
  */
-public class Estoque {
+public class Estoque implements Serializable{
 
 	private double quantidadeProduto;
 	private Produto produto;
+	private int codigo;
+
+	public Estoque(double quantidadeProduto, Produto produto, int codigo) {
+		
+		this.quantidadeProduto = quantidadeProduto;
+		this.produto = produto;
+		this.codigo = codigo;
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
 
 	public void adicionarProduto(Produto produto, double quantidade) {
 
@@ -32,11 +50,7 @@ public class Estoque {
 		this.produto = produto;
 	}
 
-	public Estoque(double quantidadeProduto, Produto produto) {
-		super();
-		this.quantidadeProduto = quantidadeProduto;
-		this.produto = produto;
-	}
+	
 
 	public void retirarProduto(Produto produto, double quatidade) {
 
