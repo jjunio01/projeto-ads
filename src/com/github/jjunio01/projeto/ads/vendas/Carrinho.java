@@ -2,51 +2,55 @@ package com.github.jjunio01.projeto.ads.vendas;
 
 import java.util.ArrayList;
 
+import com.github.jjunio01.projeto.ads.estoque.Produto;
+
 /**
  * @author JJunio
  *
  */
 public class Carrinho {
 
-	// private ArrayList<Produto> listaProdutos;
+	private ArrayList<Produto> listaProdutos;
 	private double precoTotal;
+	private int quantidade;
 
 	public void pegarCarrinho() {
-		/* listaProdutos = new ArrayList<>(); */
+		listaProdutos = new ArrayList<>();
 		precoTotal = 0.0;
+		this.quantidade = 0;
 	}
 
 	public void deletarCarrinho() {
-		/* this.listaProdutos = null; */
+		this.listaProdutos = null;
+		this.precoTotal = 0;
+		this.quantidade = 0;
 	}
 
-	/*
-	 * public void adicinarProdutoCarrinho(Produto produto) {
-	 * this.listaProdutos.add(produto); }
-	 */
+	public void adicinarProdutoCarrinho(Produto produto) {
+		this.listaProdutos.add(produto);
+	}
 
 	public void calcularPrecoTotal() {
-		/**
-		for (int i = 0; i < this.ListaProdutos.size(); i++) {
-			this.precoTotal += ListaProdutos.get(i).getValor() * ListaProdutos.get(i).getQuantidade();
+
+		for (int i = 0; i < this.listaProdutos.size(); i++) {
+			this.precoTotal += this.listaProdutos.get(i).getPreco() * quantidade;
 		}
-		*/
+
 	}
 
 	public double getPrecoTotal() {
 		return precoTotal;
 	}
-	
+
 	@Override
 	public String toString() {
 		String carrinho = "";
-		/**
-		for (int i = 0; i < this.ListaProdutos.size(); i++) {
-			carrinho += "Nome: " + ListaProdutos.get(i).getNome() +
-					"\nValor unitário R$: " + ListaProdutos.get(i).getValor()+
-					"\nQuantidade :" + ListaProdutos.get(i).getQuantidade() + "\n";
+
+		for (int i = 0; i < this.listaProdutos.size(); i++) {
+			carrinho += "Nome: " + this.listaProdutos.get(i).getNome() + "\nValor unitário R$: "
+					+ this.listaProdutos.get(i).getPreco() + "\nQuantidade :" + this.quantidade + "\n";
 		}
-		*/
+
 		return carrinho;
 	}
 
