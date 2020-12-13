@@ -3,6 +3,8 @@
  */
 package com.github.jjunio01.projeto.ads.estoque;
 
+import java.io.Serializable;
+
 import com.github.jjunio01.projeto.ads.vendas.Carrinho;
 import com.github.jjunio01.projeto.ads.vendas.Vendas;
 
@@ -10,7 +12,7 @@ import com.github.jjunio01.projeto.ads.vendas.Vendas;
  * @author Petterson
  *
  */
-public class Pedido {
+public class Pedido implements Serializable{
 
 	private Carrinho carrinho;
 	/* private Pessoa cliente; */

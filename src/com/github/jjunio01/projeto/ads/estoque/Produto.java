@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author Petterson
  *
  */
-public class Produto {
+public class Produto implements Serializable{
 
 	private String nome;
 	private String descricao;
