@@ -5,5 +5,7 @@ package com.github.jjunio01.projeto.ads.pagamento;
  */
 public interface Pagamento {
 	
+	public void realizarPagamento();
+	public void realizarEstorno();
 	
 }
