@@ -10,4 +10,6 @@ import com.github.jjunio01.projeto.ads.estoque.Estoque;
 
 public interface EstoqueDAO extends DAO<Estoque> {
 
+	public Estoque consultar(int codigo);
+	public void remover(Estoque estoque);
 }

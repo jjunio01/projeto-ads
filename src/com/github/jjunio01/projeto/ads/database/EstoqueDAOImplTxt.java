@@ -21,50 +21,68 @@ public class EstoqueDAOImplTxt implements EstoqueDAO {
 		List<Estoque> estoqueDisponivel = listarTodos();
 		estoqueDisponivel.add(t);
 		adicionarLista(estoqueDisponivel);
+		JOptionPane.showMessageDialog(null, "Produto adicionado ao estoque com sucesso.", "CompreAqui",
+				JOptionPane.INFORMATION_MESSAGE);
 
 	}
 
+	@Override
 	public Estoque consultar(int codigo) {
 		List<Estoque> estoqueAtual = listarTodos();
 
-		for (Estoque atual : estoqueAtual) {
-			if (atual.getCodigo() == codigo) {
-				return atual;
+		if (estoqueAtual.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Não esxistem produtos cadastrados no estoque.", "CompreAqui",
+					JOptionPane.INFORMATION_MESSAGE);
+			return null;
+		} else {
+			for (Estoque atual : estoqueAtual) {
+				if (atual.getCodigo() == codigo) {
+					return atual;
+				}
 			}
 		}
 
 		return null;
 	}
 
+	@Override
 	public void remover(Estoque estoque) {
 
 		List<Estoque> estoqueDisponivel = listarTodos();
-		for (Estoque cadastrado : estoqueDisponivel) {
-			if (cadastrado.getCodigo() == estoque.getCodigo()) {
-				estoqueDisponivel.remove(cadastrado);
-				adicionarLista(estoqueDisponivel);
-				JOptionPane.showMessageDialog(null, "Estoque do produto removido com sucesso.", "Sistema CompreAqui",
-						JOptionPane.INFORMATION_MESSAGE);
-				return;
+		if (estoqueDisponivel.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Não esxistem produtos cadastrados no estoque para remover",
+					"Sistema CompreAqui", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			for (Estoque cadastrado : estoqueDisponivel) {
+				if (cadastrado.getCodigo() == estoque.getCodigo()) {
+					estoqueDisponivel.remove(cadastrado);
+					adicionarLista(estoqueDisponivel);
+					JOptionPane.showMessageDialog(null, "Estoque do produto removido com sucesso.",
+							"Sistema CompreAqui", JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
 			}
 		}
-
 	}
 
 	@Override
 	public void atualizar(Estoque t) {
 
 		List<Estoque> estoqueDisponivel = listarTodos();
+		if (estoqueDisponivel.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Não esxistem produtos cadastrados no estoque para atualizar",
+					"Sistema CompreAqui", JOptionPane.INFORMATION_MESSAGE);
+		} else {
 
-		for (Estoque atual : estoqueDisponivel) {
-			if (atual.getCodigo() == t.getCodigo()) {
-				estoqueDisponivel.remove(atual);
-				adicionarLista(estoqueDisponivel);
-				estoqueDisponivel.add(t);
-				adicionarLista(estoqueDisponivel);
+			for (Estoque atual : estoqueDisponivel) {
+				if (atual.getCodigo() == t.getCodigo()) {
+					estoqueDisponivel.remove(atual);
+					adicionarLista(estoqueDisponivel);
+					estoqueDisponivel.add(t);
+					adicionarLista(estoqueDisponivel);
+				}
 			}
 		}
-
 	}
 
 	@Override
