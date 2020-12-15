@@ -55,6 +55,8 @@ public class UsuarioDAOImplTxt implements UsuarioDAO {
 			FileUtil.gravarInformacoes(usuarioCadastrados, caminho);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "Erro ao acessar banco de dados.", "Sistema CompreAqui",
+					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 	}
@@ -83,6 +85,8 @@ public class UsuarioDAOImplTxt implements UsuarioDAO {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro ao acessar banco de dados.", "Sistema CompreAqui",
+					JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
