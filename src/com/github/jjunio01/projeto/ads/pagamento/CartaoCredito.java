@@ -1,10 +1,12 @@
 package com.github.jjunio01.projeto.ads.pagamento;
 
+import java.io.Serializable;
+
 /**
  * @author Mikael C. Barros
  *
  */
-public class CartaoCredito {
+public class CartaoCredito implements Serializable  {
 	
 	private EnumBandeira bandeira;
 	private String numero;

@@ -2,11 +2,16 @@ package com.github.jjunio01.projeto.ads.pagamento;
 
 import javax.swing.JOptionPane;
 
+import com.github.jjunio01.projeto.ads.entidades.Pessoa;
+
+
+
 /**
  * @author Mikael C. Barros
  *
  */
 public class PagamentoDinheiro implements Pagamento {
+
 
 	@Override
 	public boolean realizarPagamento(double valorTotal, Pessoa cliente, EnumPag tipoPagamento, double valorPago) {
@@ -27,5 +32,6 @@ public class PagamentoDinheiro implements Pagamento {
 		JOptionPane.showMessageDialog(null, "O valor estornado foi de R$" + estorno, "Estorno", JOptionPane.INFORMATION_MESSAGE);
 		return true;
 	}
+
 
 }
