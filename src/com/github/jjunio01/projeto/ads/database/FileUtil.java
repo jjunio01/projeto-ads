@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.JOptionPane;
+
 /**
  * @author JJunio
  *
@@ -39,14 +41,21 @@ public class FileUtil {
 
 		File database = new File(caminho);
 
-		FileInputStream fileInput = new FileInputStream(database);
-		ObjectInputStream objectInput = new ObjectInputStream(fileInput);
+		if (database.exists()) {
 
-		Object objetoRetorno = objectInput.readObject();
+			FileInputStream fileInput = new FileInputStream(database);
+			ObjectInputStream objectInput = new ObjectInputStream(fileInput);
 
-		objectInput.close();
-		fileInput.close();
+			Object objetoRetorno = objectInput.readObject();
 
-		return objetoRetorno;
+			objectInput.close();
+			fileInput.close();
+
+			return objetoRetorno;
+		} else {
+			JOptionPane.showMessageDialog(null, "Base de dados não existente para recuperar informações.",
+					"Sistema CompreAqui", JOptionPane.ERROR_MESSAGE);
+			return null;
+		}
 	}
 }
