@@ -23,47 +23,44 @@ public class Pessoa implements Serializable {
 		this.cartaocredito = cartaocredito;
 	}
 
-	public String getnome() {
+	public String getNome() {
 		return nome;
 	}
 
-	public void setnome(String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public Usuario getusuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
 
-	public void setusuario(Usuario usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-
 	}
 
-	public String gettelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void settelefone(String telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-
 	}
 
-	public Endereco getendereco() {
+	public Endereco getEndereco() {
 		return endereco;
 	}
 
-	public void setendereco(Endereco endereco) {
+	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
-
 	}
 
-	public CartaoCredito getcartaocredito() {
+	public CartaoCredito getCartaocredito() {
 		return cartaocredito;
 	}
 
-	public void setcartaocredito(CartaoCredito cartaocredito) {
+	public void setCartaocredito(CartaoCredito cartaocredito) {
 		this.cartaocredito = cartaocredito;
-
 	}
+
 }

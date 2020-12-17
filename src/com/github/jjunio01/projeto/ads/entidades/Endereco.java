@@ -23,51 +23,51 @@ public class Endereco implements Serializable {
 		this.estado = estado;
 	}
 
-	public String getrua() {
+	public String getRua() {
 		return rua;
 	}
 
-	public void setrua(String rua) {
+	public void setRua(String rua) {
 		this.rua = rua;
 	}
 
-	public int getnumero() {
+	public int getNumero() {
 		return numero;
 	}
 
-	public void setnumero(int numero) {
+	public void setNumero(int numero) {
 		this.numero = numero;
 	}
 
-	public long getcep() {
+	public long getCep() {
 		return cep;
 	}
 
-	public void setcep(long cep) {
+	public void setCep(long cep) {
 		this.cep = cep;
 	}
 
-	public String getbairro() {
+	public String getBairro() {
 		return bairro;
 	}
 
-	public void setbairro(String bairro) {
+	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
 
-	public String getcidade() {
+	public String getCidade() {
 		return cidade;
 	}
 
-	public void setcidade(String cidade) {
+	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
 
-	public String getestado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setestado(String estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
