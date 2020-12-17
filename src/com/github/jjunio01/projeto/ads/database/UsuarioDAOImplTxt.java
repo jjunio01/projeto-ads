@@ -20,16 +20,20 @@ public class UsuarioDAOImplTxt implements UsuarioDAO {
 	public void remover(String login) {
 
 		List<Usuario> usuarioCadastrados = listarTodos();
-		for (Usuario cadastrado : usuarioCadastrados) {
-			if (cadastrado.getLogin().equals(login)) {
-				usuarioCadastrados.remove(cadastrado);
-				adicionarLista(usuarioCadastrados);
-				JOptionPane.showMessageDialog(null, "Usuário removido com sucesso.", "Sistema CompreAqui",
-						JOptionPane.INFORMATION_MESSAGE);
-				return;
+		if (usuarioCadastrados.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Nenhum usuário cadastrado para remoção", "Sistema CompreAqui",
+					JOptionPane.ERROR_MESSAGE);
+		} else {
+			for (Usuario cadastrado : usuarioCadastrados) {
+				if (cadastrado.getLogin().equals(login)) {
+					usuarioCadastrados.remove(cadastrado);
+					adicionarLista(usuarioCadastrados);
+					JOptionPane.showMessageDialog(null, "Usuário removido com sucesso.", "Sistema CompreAqui",
+							JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
 			}
 		}
-
 	}
 
 	@Override
@@ -51,31 +55,30 @@ public class UsuarioDAOImplTxt implements UsuarioDAO {
 
 		List<Usuario> usuarioCadastrados = listarTodos();
 		usuarioCadastrados.add(usuario);
-		try {
-			FileUtil.gravarInformacoes(usuarioCadastrados, caminho);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(null, "Erro ao acessar banco de dados.", "Sistema CompreAqui",
-					JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
-		}
+		adicionarLista(usuarioCadastrados);
+		JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso.", "Sistema CompreAqui",
+				JOptionPane.ERROR_MESSAGE);
 	}
 
 	@Override
 	public void atualizar(Usuario t) {
 
 		List<Usuario> usuarioCadastrados = listarTodos();
-		for (Usuario cadastrado : usuarioCadastrados) {
-			if (cadastrado.getLogin().equals(t.getLogin())) {
-				usuarioCadastrados.remove(cadastrado);
-				usuarioCadastrados.add(t);
-				adicionarLista(usuarioCadastrados);
-				JOptionPane.showMessageDialog(null, "Usuário atualizado com sucesso.", "Sistema CompreAqui",
-						JOptionPane.INFORMATION_MESSAGE);
-				return;
+		if (usuarioCadastrados.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Nenhum usuário cadastrado para atualização.", "Sistema CompreAqui",
+					JOptionPane.ERROR_MESSAGE);
+		} else {
+			for (Usuario cadastrado : usuarioCadastrados) {
+				if (cadastrado.getLogin().equals(t.getLogin())) {
+					usuarioCadastrados.remove(cadastrado);
+					usuarioCadastrados.add(t);
+					adicionarLista(usuarioCadastrados);
+					JOptionPane.showMessageDialog(null, "Usuário atualizado com sucesso.", "Sistema CompreAqui",
+							JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
 			}
 		}
-
 	}
 
 	@Override
