@@ -44,7 +44,7 @@ public class ClienteDAOImplTxt implements ClienteDAO {
 		} else {
 
 			for (Pessoa pessoaCadastrada : clientesCadastrados) {
-				if (pessoaCadastrada.getnome().equals(nome)) {
+				if (pessoaCadastrada.getNome().equals(nome)) {
 					clientesCadastrados.remove(pessoaCadastrada);
 					adicionarLista(clientesCadastrados);
 					return pessoaCadastrada;
@@ -63,7 +63,7 @@ public class ClienteDAOImplTxt implements ClienteDAO {
 					JOptionPane.ERROR_MESSAGE);
 		} else {
 			for (Pessoa pessoaCadastrada : clientesCadastrados) {
-				if (pessoaCadastrada.getnome().equals(nome)) {
+				if (pessoaCadastrada.getNome().equals(nome)) {
 					clientesCadastrados.remove(pessoaCadastrada);
 					adicionarLista(clientesCadastrados);
 					JOptionPane.showMessageDialog(null, "Usuário removido com sucesso.", "Sistema CompreAqui",
@@ -83,7 +83,7 @@ public class ClienteDAOImplTxt implements ClienteDAO {
 					JOptionPane.ERROR_MESSAGE);
 		} else {
 			for (Pessoa pessoaCadastrada : clientesCadastrados) {
-				if (pessoaCadastrada.getnome().equals(t.getnome())) {
+				if (pessoaCadastrada.getNome().equals(t.getNome())) {
 					clientesCadastrados.remove(pessoaCadastrada);
 					clientesCadastrados.add(t);
 					adicionarLista(clientesCadastrados);
