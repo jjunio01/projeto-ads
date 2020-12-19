@@ -8,13 +8,13 @@ import java.io.Serializable;
  */
 public class Endereco implements Serializable {
 	private String rua;
-	private int numero;
-	private long cep;
+	private String numero;
+	private String cep;
 	private String bairro;
 	private String cidade;
 	private String estado;
 
-	public Endereco(String rua, int numero, long cep, String bairro, String cidade, String estado) {
+	public Endereco(String rua, String numero, String cep, String bairro, String cidade, String estado) {
 		this.rua = rua;
 		this.numero = numero;
 		this.cep = cep;
@@ -31,19 +31,19 @@ public class Endereco implements Serializable {
 		this.rua = rua;
 	}
 
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
-	public long getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(long cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
