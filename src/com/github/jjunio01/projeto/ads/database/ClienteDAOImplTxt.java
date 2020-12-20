@@ -22,14 +22,27 @@ public class ClienteDAOImplTxt implements ClienteDAO {
 	public void adicionar(Pessoa t) {
 
 		List<Pessoa> clientesCadastrados = listarTodos();
-		clientesCadastrados.add(t);
-		try {
-			FileUtil.gravarInformacoes(clientesCadastrados, caminho);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Erro ao acessar banco de dados.", "Sistema CompreAqui",
-					JOptionPane.ERROR_MESSAGE);
+		if (clientesCadastrados != null) {
+			clientesCadastrados.add(t);
+			try {
+				FileUtil.gravarInformacoes(clientesCadastrados, caminho);
+				JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso", "Sistema CompreAqui",
+						JOptionPane.INFORMATION_MESSAGE);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Erro ao acessar banco de dados.", "Sistema CompreAqui",
+						JOptionPane.ERROR_MESSAGE);
+			}
+		} else {
+			try {
+				FileUtil.gravarInformacoes(clientesCadastrados, caminho);
+				JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso", "Sistema CompreAqui",
+						JOptionPane.INFORMATION_MESSAGE);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}
