@@ -1,6 +1,9 @@
 # Projeto Lógica de Programação Orientada a Objetos
 
-Projeto como requisito para aprovação na disciplina do curso de ADS do IFPE Campus Garanhuns.
+Projeto como requisito para aprovação na disciplina `Lógica de Programação Orientada a Objetos` do curso de ADS do IFPE Campus Garanhuns.
+
+      Sistema para gerenciamento de compras em Supermercado possibilitando a compra de forma
+      remota
 
 ## Como contribuir:
 
@@ -40,11 +43,7 @@ Projeto como requisito para aprovação na disciplina do curso de ADS do IFPE Ca
       4.4 - Sincronizando os repositórios local e remoto: (git push origin master)
       
       
-5. Crie um branch para realizar suas contribuições:
-      
-      Utilize o nome do módulo que você está responsável como nome do branch.
-
-    `git checkout -b <NOME DO BRANCH>`
+5. Enviando sua contribuição:
   
       Após ter feito as modificações necessárias faça:
       
