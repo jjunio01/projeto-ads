@@ -12,9 +12,6 @@ import com.github.jjunio01.projeto.ads.estoque.Produto;
 import com.github.jjunio01.projeto.ads.pagamento.CartaoCredito;
 import com.github.jjunio01.projeto.ads.pagamento.EnumBandeira;
 
-
-
-
 /**
  * @author JJunio
  *
@@ -25,7 +22,8 @@ public class Main {
 
 	}
 
-	public static void cadastrarPessoa() {
+	public static Pessoa cadastrarPessoa() {
+		Object[] itens = { EnumBandeira.ELO, EnumBandeira.HIPERCARD, EnumBandeira.MASTERCARD, EnumBandeira.VISA };
 		String nome = JOptionPane.showInputDialog("Digite o seu Nome:");
 		String telefone = JOptionPane.showInputDialog("Digite o número do seu telefone:");
 		String cep = JOptionPane.showInputDialog("Digite o CEP:");
@@ -35,24 +33,26 @@ public class Main {
 		String rua = JOptionPane.showInputDialog("Rua");
 		String numero = JOptionPane.showInputDialog("Número da Residência;");
 		Endereco endereco = new Endereco(rua, numero, cep, bairro, cidade, estado);
-		EnumBandeira bandeira = JOptionPane.showInputDialog("Digite a bandeira do cartão:");
+		EnumBandeira bandeira = (EnumBandeira) JOptionPane.showInputDialog(null, "Escolha a bandeira do cartão",
+				"Opçao", JOptionPane.INFORMATION_MESSAGE, null, itens, itens[0]);
 		String numeroCartao = JOptionPane.showInputDialog("Digite o número do seu cartão:");
-		String limite = JOptionPane.showInputDialog("Limite:");
+		double limite = Double.parseDouble(JOptionPane.showInputDialog("Limite:"));
 		String cvv = JOptionPane.showInputDialog("CVV (Código por trás do cartão):");
 		String nomeCartao = JOptionPane.showInputDialog("Digite o nome presente cartão:");
 		String validade = JOptionPane.showInputDialog("Validade:");
 		CartaoCredito cartaoCredito = new CartaoCredito(bandeira, numeroCartao, limite, cvv, nomeCartao, validade);
 		Usuario usuario = cadastrarUsuario();
-		Pessoa pessoa = new Pessoa(nomeCartao, usuario, telefone, endereco, cartaocredito);
-		
-		
+		Pessoa pessoa = new Pessoa(nomeCartao, usuario, telefone, endereco, cartaoCredito);
+
+		return pessoa;
 
 	}
 
 	public static Usuario cadastrarUsuario() {
+		
 		String login = JOptionPane.showInputDialog("Digite o seu login:");
 		String senha = JOptionPane.showInputDialog("Digite o sua senha");
-		Usuario usuario = new Usuario (login, senha);
+		Usuario usuario = new Usuario(login, senha);
 		return usuario;
 
 	}
@@ -76,7 +76,7 @@ public class Main {
 	public static Produto recuperarProduto(String nome) {
 		return null;
 	}
-	
+
 	public static Produto recuperarProduto(int id) {
 		return null;
 	}
@@ -84,7 +84,7 @@ public class Main {
 	public static Estoque recuperarEstoque(Produto produto) {
 		return null;
 	}
-	
+
 	public static List<Pessoa> recuperarTodasPessoas() {
 		return null;
 	}
