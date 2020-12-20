@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import com.github.jjunio01.projeto.ads.database.ClienteDAOImplTxt;
 import com.github.jjunio01.projeto.ads.database.DAO;
 import com.github.jjunio01.projeto.ads.database.UsuarioDAOImplTxt;
 import com.github.jjunio01.projeto.ads.entidades.Endereco;
@@ -60,8 +61,10 @@ public class Main {
 
 	}
 
-	public static Pessoa cadastrarPessoa() {
-
+	public static void cadastrarPessoa() {
+		
+		ClienteDAOImplTxt daoPessoa = new ClienteDAOImplTxt();
+		
 		Object[] itens = { EnumBandeira.ELO, EnumBandeira.HIPERCARD, EnumBandeira.MASTERCARD, EnumBandeira.VISA };
 		String nome = JOptionPane.showInputDialog("Digite o seu Nome:");
 		String telefone = JOptionPane.showInputDialog("Digite o número do seu telefone:");
@@ -82,8 +85,8 @@ public class Main {
 		CartaoCredito cartaoCredito = new CartaoCredito(bandeira, numeroCartao, limite, cvv, nomeCartao, validade);
 		Usuario usuario = cadastrarUsuario();
 		Pessoa pessoa = new Pessoa(nome, usuario, telefone, endereco, cartaoCredito);
-
-		return pessoa;
+		
+		daoPessoa.adicionar(pessoa);
 
 	}
 
