@@ -94,4 +94,22 @@ public class UsuarioDAOImplTxt implements UsuarioDAO {
 
 	}
 
+	@Override
+	public Usuario consultar(String login) {
+
+		List<Usuario> usuarioCadastrados = listarTodos();
+		if (usuarioCadastrados.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Nenhum usuário cadastrado para consulta", "Sistema CompreAqui",
+					JOptionPane.ERROR_MESSAGE);
+		} else {
+			for (Usuario cadastrado : usuarioCadastrados) {
+				if (cadastrado.getLogin().equals(login)) {
+					return cadastrado;
+				}
+			}
+		}
+
+		return null;
+	}
+
 }
