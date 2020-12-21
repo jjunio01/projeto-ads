@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import javax.swing.JOptionPane;
 
 /**
  * @author JJunio
@@ -36,8 +35,7 @@ public class FileUtil {
 		return true;
 	}
 
-	public static Object recuperarInformacoes(String caminho)
-			throws IOException, ClassNotFoundException {
+	public static Object recuperarInformacoes(String caminho) throws IOException, ClassNotFoundException {
 
 		File database = new File(caminho);
 
@@ -53,8 +51,6 @@ public class FileUtil {
 
 			return objetoRetorno;
 		} else {
-			JOptionPane.showMessageDialog(null, "Base de dados não existente para recuperar informações.",
-					"Sistema CompreAqui", JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
 	}
