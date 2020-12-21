@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 import com.github.jjunio01.projeto.ads.entidades.Pessoa;
 
-public class pagamentoCartao {
+public class PagamentoCartao {
 
 	public boolean realizarPagamento(double valorTotal, Pessoa cliente, EnumPag tipoPagamento) {
 		if (cliente.getCartaocredito().getLimite() >= valorTotal) {
