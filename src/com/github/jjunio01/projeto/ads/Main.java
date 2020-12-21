@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import com.github.jjunio01.projeto.ads.database.ClienteDAOImplTxt;
 import com.github.jjunio01.projeto.ads.database.DAO;
+import com.github.jjunio01.projeto.ads.database.EstoqueDAOImplTxt;
 import com.github.jjunio01.projeto.ads.database.UsuarioDAOImplTxt;
 import com.github.jjunio01.projeto.ads.entidades.Endereco;
 import com.github.jjunio01.projeto.ads.entidades.Pessoa;
@@ -103,8 +104,12 @@ public class Main {
 		return null;
 	}
 
-	public static Estoque cadastrarEstoque() {
-		return null;
+	public static void cadastrarEstoque() {
+		EstoqueDAOImplTxt daoEstoque = new EstoqueDAOImplTxt();
+		double 
+		daoEstoque.adicionar();
+		
+		
 	}
 
 	public static Pessoa recuperarPessoa(String nome) {
