@@ -92,8 +92,6 @@ public class EstoqueDAOImplTxt implements EstoqueDAO {
 
 		} catch (ClassNotFoundException | IOException e) {
 
-			JOptionPane.showMessageDialog(null, "Erro ao acessar banco de dados.", "Sistema CompreAqui",
-					JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
 	}

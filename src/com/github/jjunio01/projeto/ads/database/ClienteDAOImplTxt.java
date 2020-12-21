@@ -1,6 +1,5 @@
 package com.github.jjunio01.projeto.ads.database;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +7,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import com.github.jjunio01.projeto.ads.entidades.Pessoa;
-import com.github.jjunio01.projeto.ads.entidades.Usuario;
 
 /**
  * @author JJunio
@@ -24,6 +22,7 @@ public class ClienteDAOImplTxt implements ClienteDAO {
 		List<Pessoa> clientesCadastrados = listarTodos();
 		if (clientesCadastrados != null) {
 			clientesCadastrados.add(t);
+
 			try {
 				FileUtil.gravarInformacoes(clientesCadastrados, caminho);
 				JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso", "Sistema CompreAqui",
@@ -114,9 +113,6 @@ public class ClienteDAOImplTxt implements ClienteDAO {
 			return (ArrayList<Pessoa>) FileUtil.recuperarInformacoes(caminho);
 
 		} catch (ClassNotFoundException | IOException e) {
-
-			JOptionPane.showMessageDialog(null, "Erro ao acessar banco de dados.", "Sistema CompreAqui",
-					JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
 	}
