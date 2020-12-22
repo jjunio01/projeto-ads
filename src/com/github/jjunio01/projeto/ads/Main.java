@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import com.github.jjunio01.projeto.ads.database.ClienteDAOImplTxt;
 import com.github.jjunio01.projeto.ads.database.DAO;
 import com.github.jjunio01.projeto.ads.database.EstoqueDAOImplTxt;
 import com.github.jjunio01.projeto.ads.database.UsuarioDAO;
