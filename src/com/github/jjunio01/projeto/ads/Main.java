@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import com.github.jjunio01.projeto.ads.database.ClienteDAOImplTxt;
 import com.github.jjunio01.projeto.ads.database.DAO;
 import com.github.jjunio01.projeto.ads.database.EstoqueDAOImplTxt;
+import com.github.jjunio01.projeto.ads.database.UsuarioDAO;
 import com.github.jjunio01.projeto.ads.database.UsuarioDAOImplTxt;
 import com.github.jjunio01.projeto.ads.entidades.Endereco;
 import com.github.jjunio01.projeto.ads.entidades.Pessoa;
@@ -46,7 +47,28 @@ public class Main {
 				case "3":
 
 					break;
-				case "4":cadastrarProduto();
+				case "4":
+					String login = JOptionPane.showInputDialog("Digite o seu login:");
+
+					Usuario usuario = recuperarUsuario(login);
+
+					if (usuario != null) {
+						String senha = JOptionPane.showInputDialog("Digite o sua senha");
+						if (senha.equals(usuario.getSenha())) {
+							
+							
+							cadastrarProduto();
+							cadastrarEstoque();
+
+						} else {
+							JOptionPane.showMessageDialog(null, "Senha incorreta!", "Erro", JOptionPane.ERROR_MESSAGE);
+
+						}
+
+					} else {
+						JOptionPane.showMessageDialog(null, "Usuário não cadastrado!", "Erro",
+								JOptionPane.ERROR_MESSAGE);
+					}
 
 					break;
 
@@ -120,7 +142,7 @@ public class Main {
 
 				break;
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Forneça uma informação válida!", "Erro 404",
+				JOptionPane.showMessageDialog(null, "Forneça uma informação válida!", "Valores numéricos Ex. 47.02",
 						JOptionPane.ERROR_MESSAGE);
 
 			}
@@ -137,9 +159,9 @@ public class Main {
 	}
 
 	public static Pessoa recuperarPessoa() {
-		
+
 		String nome = JOptionPane.showInputDialog("Digite o Nome do cliente:");
-		
+
 		ClienteDAOImplTxt daoCliente = new ClienteDAOImplTxt();
 		Pessoa clienteCadastrado = daoCliente.consultar(nome);
 		return clienteCadastrado;
@@ -153,11 +175,11 @@ public class Main {
 		return usuarioCadastrado;
 	}
 
-	public static Produto recuperarProduto(String nome) {
+	public static Produto recuperarProdutoNome(String nome) {
 		return null;
 	}
 
-	public static Produto recuperarProduto(int id) {
+	public static Produto recuperarProdutoId(int id) {
 		return null;
 	}
 
