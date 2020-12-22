@@ -45,6 +45,7 @@ public class Main {
 					cadastrarEstoque();
 					break;
 				case "3":
+					cadastrarUsuario();
 
 					break;
 				case "4":
@@ -55,8 +56,7 @@ public class Main {
 					if (usuario != null) {
 						String senha = JOptionPane.showInputDialog("Digite o sua senha");
 						if (senha.equals(usuario.getSenha())) {
-							
-							
+
 							cadastrarProduto();
 							cadastrarEstoque();
 
@@ -77,8 +77,8 @@ public class Main {
 					break;
 
 				default:
-					JOptionPane.showMessageDialog(null, "Escolha umas das opções validas do Menu", "Sistema CompreAqui",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Escolha umas das opções validas do Menu",
+							"Sistema CompreAqui", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
@@ -110,7 +110,6 @@ public class Main {
 		Usuario usuario = cadastrarUsuario();
 		Pessoa pessoa = new Pessoa(nome, usuario, telefone, endereco, cartaoCredito);
 
-
 		daoPessoa.adicionar(pessoa);
 
 	}
@@ -121,6 +120,7 @@ public class Main {
 		String login = JOptionPane.showInputDialog("Digite o seu login:");
 		String senha = JOptionPane.showInputDialog("Digite o sua senha");
 		Usuario usuario = new Usuario(login, senha);
+		daoUsuario.adicionar(usuario);
 		return usuario;
 	}
 
@@ -143,9 +143,9 @@ public class Main {
 
 				break;
 			} catch (Exception e) {
-        
-				JOptionPane.showMessageDialog(null, "Forne�a uma informa��o v�lida!", "Valores num�ricos Ex. 47.02",
-						JOptionPane.ERROR_MESSAGE);
+
+				JOptionPane.showMessageDialog(null, "Forne�a uma informa��o v�lida!",
+						"Valores num�ricos Ex. 47.02", JOptionPane.ERROR_MESSAGE);
 
 			}
 		}
@@ -168,7 +168,6 @@ public class Main {
 		EnunUnidadeMedida unidadeMedida = (EnunUnidadeMedida) JOptionPane.showInputDialog(null,
 				"Escolha a unidade médida", "Opção", JOptionPane.INFORMATION_MESSAGE, null, medidas, medidas[0]);
 
-
 		while (true) {
 			try {
 				id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID de produto: "));
@@ -178,7 +177,8 @@ public class Main {
 				break;
 
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Digite apenas números no padrão: EX = 4.67 ", "Erro", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Digite apenas números no padrão: EX = 4.67 ", "Erro",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		Produto produto = new Produto(nome, descricao, ean, unidadeMedida, preco, id);
@@ -196,7 +196,6 @@ public class Main {
 		return clienteCadastrado;
 
 	}
-	
 
 	public static Usuario recuperarUsuario(String login) {
 
