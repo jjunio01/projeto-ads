@@ -19,10 +19,28 @@ public class EstoqueDAOImplTxt implements EstoqueDAO {
 	@Override
 	public void adicionar(Estoque t) {
 		List<Estoque> estoqueDisponivel = listarTodos();
-		estoqueDisponivel.add(t);
-		adicionarLista(estoqueDisponivel);
-		JOptionPane.showMessageDialog(null, "Produto adicionado ao estoque com sucesso.", "CompreAqui",
-				JOptionPane.INFORMATION_MESSAGE);
+		if (estoqueDisponivel != null) {
+			estoqueDisponivel.add(t);
+			try {
+				FileUtil.gravarInformacoes(estoqueDisponivel, caminho);
+				JOptionPane.showMessageDialog(null, "Produto adicionado ao estoque com sucesso.", "CompreAqui",
+						JOptionPane.INFORMATION_MESSAGE);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}else {
+			try {
+				FileUtil.gravarInformacoes(estoqueDisponivel, caminho);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			JOptionPane.showMessageDialog(null, "Produto adicionado ao estoque com sucesso.", "CompreAqui",
+					JOptionPane.INFORMATION_MESSAGE);
+			
+		}
+		
 
 	}
 

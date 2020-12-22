@@ -54,10 +54,30 @@ public class UsuarioDAOImplTxt implements UsuarioDAO {
 	public void adicionar(Usuario usuario) {
 
 		List<Usuario> usuarioCadastrados = listarTodos();
-		usuarioCadastrados.add(usuario);
-		adicionarLista(usuarioCadastrados);
-		JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso.", "Sistema CompreAqui",
-				JOptionPane.ERROR_MESSAGE);
+		
+		if (usuarioCadastrados != null) {
+			usuarioCadastrados.add(usuario);
+			try {
+				FileUtil.gravarInformacoes(usuarioCadastrados, caminho);
+				JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso.", "Sistema CompreAqui",
+						JOptionPane.ERROR_MESSAGE);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		} else {
+			try {
+				FileUtil.gravarInformacoes(usuarioCadastrados, caminho);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso.", "Sistema CompreAqui",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		
+		
+		
 	}
 
 	@Override

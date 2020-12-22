@@ -1,11 +1,8 @@
 package com.github.jjunio01.projeto.ads.vendas;
 
-import javax.swing.JOptionPane;
-
 import com.github.jjunio01.projeto.ads.entidades.Pessoa;
 import com.github.jjunio01.projeto.ads.pagamento.EnumPag;
 import com.github.jjunio01.projeto.ads.pagamento.PagamentoDinheiro;
-import com.github.jjunio01.projeto.ads.pagamento.pagamentoCartao;
 import com.github.jjunio01.projeto.ads.pagamento.PagamentoCartao;
 
 /**
