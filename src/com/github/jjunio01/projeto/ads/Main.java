@@ -4,13 +4,13 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import com.github.jjunio01.projeto.ads.database.ClienteDAOImplTxt;
 import com.github.jjunio01.projeto.ads.database.DAO;
 import com.github.jjunio01.projeto.ads.database.EstoqueDAOImplTxt;
 import com.github.jjunio01.projeto.ads.database.UsuarioDAOImplTxt;
 import com.github.jjunio01.projeto.ads.entidades.Endereco;
 import com.github.jjunio01.projeto.ads.entidades.Pessoa;
 import com.github.jjunio01.projeto.ads.entidades.Usuario;
+import com.github.jjunio01.projeto.ads.estoque.EnunUnidadeMedida;
 import com.github.jjunio01.projeto.ads.estoque.Estoque;
 import com.github.jjunio01.projeto.ads.estoque.Produto;
 import com.github.jjunio01.projeto.ads.pagamento.CartaoCredito;
@@ -40,7 +40,7 @@ public class Main {
 					cadastrarPessoa();
 					break;
 				case "2":
-
+					cadastrarEstoque();
 					break;
 				case "3":
 
@@ -62,10 +62,8 @@ public class Main {
 
 	}
 
-	public static void cadastrarPessoa() {
-		
-		ClienteDAOImplTxt daoPessoa = new ClienteDAOImplTxt();
-		
+	public static Pessoa cadastrarPessoa() {
+
 		Object[] itens = { EnumBandeira.ELO, EnumBandeira.HIPERCARD, EnumBandeira.MASTERCARD, EnumBandeira.VISA };
 		String nome = JOptionPane.showInputDialog("Digite o seu Nome:");
 		String telefone = JOptionPane.showInputDialog("Digite o número do seu telefone:");
@@ -86,8 +84,8 @@ public class Main {
 		CartaoCredito cartaoCredito = new CartaoCredito(bandeira, numeroCartao, limite, cvv, nomeCartao, validade);
 		Usuario usuario = cadastrarUsuario();
 		Pessoa pessoa = new Pessoa(nome, usuario, telefone, endereco, cartaoCredito);
-		
-		daoPessoa.adicionar(pessoa);
+
+		return pessoa;
 
 	}
 
@@ -105,11 +103,38 @@ public class Main {
 	}
 
 	public static void cadastrarEstoque() {
+
+		double preco;
+		double quantidadeProduto;
+		int codigo;
+		int id;
+
+		Object[] medidas = { EnunUnidadeMedida.CAIXA, EnunUnidadeMedida.LITRO, EnunUnidadeMedida.KGRAMA,
+				EnunUnidadeMedida.ML, EnunUnidadeMedida.KILO, EnunUnidadeMedida.UNIDADE };
 		EstoqueDAOImplTxt daoEstoque = new EstoqueDAOImplTxt();
-		double 
-		daoEstoque.adicionar();
-		
-		
+		String nome = JOptionPane.showInputDialog("Digite o nome do produto:");
+		String descricao = JOptionPane.showInputDialog("Digite a descrição do produto:");
+		String ean = JOptionPane.showInputDialog("Digite o ean do produto:");
+		EnunUnidadeMedida unidadeMedida = (EnunUnidadeMedida) JOptionPane.showInputDialog(null,
+				"Escolha a unidade médida", "Opção", JOptionPane.INFORMATION_MESSAGE, null, medidas, medidas[0]);
+
+
+		while (true) {
+			try {
+				id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID de produto: "));
+				preco = Double.parseDouble(JOptionPane.showInputDialog("Digite o preço do produto: "));
+				quantidadeProduto = Double.parseDouble(JOptionPane.showInputDialog("Digite a quantidade de produto: "));
+				codigo = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade de produto: "));
+				break;
+
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Digite apenas números no padrão: EX = 4.67 ", "Erro", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		Produto produto = new Produto(nome, descricao, ean, unidadeMedida, preco, id);
+		Estoque estoque = new Estoque(quantidadeProduto, produto, codigo);
+		daoEstoque.adicionar(estoque);
+
 	}
 
 	public static Pessoa recuperarPessoa(String nome) {
