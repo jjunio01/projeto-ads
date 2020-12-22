@@ -11,6 +11,7 @@ import com.github.jjunio01.projeto.ads.database.UsuarioDAOImplTxt;
 import com.github.jjunio01.projeto.ads.entidades.Endereco;
 import com.github.jjunio01.projeto.ads.entidades.Pessoa;
 import com.github.jjunio01.projeto.ads.entidades.Usuario;
+import com.github.jjunio01.projeto.ads.estoque.EnunUnidadeMedida;
 import com.github.jjunio01.projeto.ads.estoque.Estoque;
 import com.github.jjunio01.projeto.ads.estoque.Produto;
 import com.github.jjunio01.projeto.ads.pagamento.CartaoCredito;
@@ -45,7 +46,7 @@ public class Main {
 				case "3":
 
 					break;
-				case "4":
+				case "4":cadastrarProduto();
 
 					break;
 
@@ -63,9 +64,9 @@ public class Main {
 	}
 
 	public static void cadastrarPessoa() {
-		
+
 		ClienteDAOImplTxt daoPessoa = new ClienteDAOImplTxt();
-		
+
 		Object[] itens = { EnumBandeira.ELO, EnumBandeira.HIPERCARD, EnumBandeira.MASTERCARD, EnumBandeira.VISA };
 		String nome = JOptionPane.showInputDialog("Digite o seu Nome:");
 		String telefone = JOptionPane.showInputDialog("Digite o número do seu telefone:");
@@ -86,7 +87,7 @@ public class Main {
 		CartaoCredito cartaoCredito = new CartaoCredito(bandeira, numeroCartao, limite, cvv, nomeCartao, validade);
 		Usuario usuario = cadastrarUsuario();
 		Pessoa pessoa = new Pessoa(nome, usuario, telefone, endereco, cartaoCredito);
-		
+
 		daoPessoa.adicionar(pessoa);
 
 	}
@@ -100,8 +101,31 @@ public class Main {
 		return usuario;
 	}
 
-	public static Produto cadastrarProduto() {
-		return null;
+	public static void cadastrarProduto() {
+
+		Object[] medidas = { EnunUnidadeMedida.CAIXA, EnunUnidadeMedida.LITRO, EnunUnidadeMedida.KGRAMA,
+				EnunUnidadeMedida.ML, EnunUnidadeMedida.KILO, EnunUnidadeMedida.UNIDADE };
+
+		String nome = JOptionPane.showInputDialog("Digite o Nome do produto:");
+		String descricao = JOptionPane.showInputDialog("Digite a descrição do produto:");
+		String ean = JOptionPane.showInputDialog("Digite o código ean do produto:");
+		EnunUnidadeMedida unidadeMedida = (EnunUnidadeMedida) JOptionPane.showInputDialog(null,
+				"Informe a Unidade de Medida do Produto", "Opçao", JOptionPane.INFORMATION_MESSAGE, null, medidas,
+				medidas[5]);
+
+		while (true) {
+			try {
+				double preco = Double.parseDouble(JOptionPane.showInputDialog("Informe o preço do produto:"));
+				int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do produto:"));
+
+				break;
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Forneça uma informação válida!", "Erro 404",
+						JOptionPane.ERROR_MESSAGE);
+
+			}
+		}
+
 	}
 
 	public static void cadastrarEstoque() {
@@ -112,8 +136,14 @@ public class Main {
 		
 	}
 
-	public static Pessoa recuperarPessoa(String nome) {
-		return null;
+	public static Pessoa recuperarPessoa() {
+		
+		String nome = JOptionPane.showInputDialog("Digite o Nome do cliente:");
+		
+		ClienteDAOImplTxt daoCliente = new ClienteDAOImplTxt();
+		Pessoa clienteCadastrado = daoCliente.consultar(nome);
+		return clienteCadastrado;
+
 	}
 
 	public static Usuario recuperarUsuario(String login) {
