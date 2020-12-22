@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import com.github.jjunio01.projeto.ads.database.ClienteDAOImplTxt;
 import com.github.jjunio01.projeto.ads.database.DAO;
 import com.github.jjunio01.projeto.ads.database.EstoqueDAOImplTxt;
 import com.github.jjunio01.projeto.ads.database.UsuarioDAOImplTxt;
@@ -41,7 +40,7 @@ public class Main {
 					cadastrarPessoa();
 					break;
 				case "2":
-
+					cadastrarEstoque();
 					break;
 				case "3":
 
@@ -55,7 +54,7 @@ public class Main {
 					break;
 
 				default:
-					JOptionPane.showMessageDialog(null, "Escolha umas das opÁıes validas do Menu", "Sistema CompreAqui",
+					JOptionPane.showMessageDialog(null, "Escolha umas das op√ß√µes validas do Menu", "Sistema CompreAqui",
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -69,24 +68,25 @@ public class Main {
 
 		Object[] itens = { EnumBandeira.ELO, EnumBandeira.HIPERCARD, EnumBandeira.MASTERCARD, EnumBandeira.VISA };
 		String nome = JOptionPane.showInputDialog("Digite o seu Nome:");
-		String telefone = JOptionPane.showInputDialog("Digite o n˙mero do seu telefone:");
+		String telefone = JOptionPane.showInputDialog("Digite o n√∫mero do seu telefone:");
 		String cep = JOptionPane.showInputDialog("Digite o CEP:");
 		String estado = JOptionPane.showInputDialog("Estado:");
 		String cidade = JOptionPane.showInputDialog("Cidade:");
 		String bairro = JOptionPane.showInputDialog("Bairro");
 		String rua = JOptionPane.showInputDialog("Rua");
-		String numero = JOptionPane.showInputDialog("N˙mero da ResidÍncia;");
+		String numero = JOptionPane.showInputDialog("N√∫mero da Resid√™ncia;");
 		Endereco endereco = new Endereco(rua, numero, cep, bairro, cidade, estado);
-		EnumBandeira bandeira = (EnumBandeira) JOptionPane.showInputDialog(null, "Escolha a bandeira do cart„o",
-				"OpÁao", JOptionPane.INFORMATION_MESSAGE, null, itens, itens[0]);
-		String numeroCartao = JOptionPane.showInputDialog("Digite o n˙mero do seu cart„o:");
+		EnumBandeira bandeira = (EnumBandeira) JOptionPane.showInputDialog(null, "Escolha a bandeira do cart√£o",
+				"Op√ßao", JOptionPane.INFORMATION_MESSAGE, null, itens, itens[0]);
+		String numeroCartao = JOptionPane.showInputDialog("Digite o n√∫mero do seu cart√£o:");
 		double limite = Double.parseDouble(JOptionPane.showInputDialog("Limite:"));
-		String cvv = JOptionPane.showInputDialog("CVV (CÛdigo por tr·s do cart„o):");
-		String nomeCartao = JOptionPane.showInputDialog("Digite o nome presente cart„o:");
+		String cvv = JOptionPane.showInputDialog("CVV (C√≥digo por tr√°s do cart√£o):");
+		String nomeCartao = JOptionPane.showInputDialog("Digite o nome presente cart√£o:");
 		String validade = JOptionPane.showInputDialog("Validade:");
 		CartaoCredito cartaoCredito = new CartaoCredito(bandeira, numeroCartao, limite, cvv, nomeCartao, validade);
 		Usuario usuario = cadastrarUsuario();
 		Pessoa pessoa = new Pessoa(nome, usuario, telefone, endereco, cartaoCredito);
+
 
 		daoPessoa.adicionar(pessoa);
 
@@ -107,20 +107,20 @@ public class Main {
 				EnunUnidadeMedida.ML, EnunUnidadeMedida.KILO, EnunUnidadeMedida.UNIDADE };
 
 		String nome = JOptionPane.showInputDialog("Digite o Nome do produto:");
-		String descricao = JOptionPane.showInputDialog("Digite a descriÁ„o do produto:");
-		String ean = JOptionPane.showInputDialog("Digite o cÛdigo ean do produto:");
+		String descricao = JOptionPane.showInputDialog("Digite a descri√ß√£o do produto:");
+		String ean = JOptionPane.showInputDialog("Digite o c√≥digo ean do produto:");
 		EnunUnidadeMedida unidadeMedida = (EnunUnidadeMedida) JOptionPane.showInputDialog(null,
-				"Informe a Unidade de Medida do Produto", "OpÁao", JOptionPane.INFORMATION_MESSAGE, null, medidas,
+				"Informe a Unidade de Medida do Produto", "Op√ßao", JOptionPane.INFORMATION_MESSAGE, null, medidas,
 				medidas[5]);
 
 		while (true) {
 			try {
-				double preco = Double.parseDouble(JOptionPane.showInputDialog("Informe o preÁo do produto:"));
+				double preco = Double.parseDouble(JOptionPane.showInputDialog("Informe o pre√ßo do produto:"));
 				int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do produto:"));
 
 				break;
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "ForneÁa uma informaÁ„o v·lida!", "Erro 404",
+				JOptionPane.showMessageDialog(null, "Forne√ßa uma informa√ß√£o v√°lida!", "Erro 404",
 						JOptionPane.ERROR_MESSAGE);
 
 			}
@@ -129,11 +129,38 @@ public class Main {
 	}
 
 	public static void cadastrarEstoque() {
+
+		double preco;
+		double quantidadeProduto;
+		int codigo;
+		int id;
+
+		Object[] medidas = { EnunUnidadeMedida.CAIXA, EnunUnidadeMedida.LITRO, EnunUnidadeMedida.KGRAMA,
+				EnunUnidadeMedida.ML, EnunUnidadeMedida.KILO, EnunUnidadeMedida.UNIDADE };
 		EstoqueDAOImplTxt daoEstoque = new EstoqueDAOImplTxt();
-		double 
-		daoEstoque.adicionar();
-		
-		
+		String nome = JOptionPane.showInputDialog("Digite o nome do produto:");
+		String descricao = JOptionPane.showInputDialog("Digite a descri√ß√£o do produto:");
+		String ean = JOptionPane.showInputDialog("Digite o ean do produto:");
+		EnunUnidadeMedida unidadeMedida = (EnunUnidadeMedida) JOptionPane.showInputDialog(null,
+				"Escolha a unidade m√©dida", "Op√ß√£o", JOptionPane.INFORMATION_MESSAGE, null, medidas, medidas[0]);
+
+
+		while (true) {
+			try {
+				id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID de produto: "));
+				preco = Double.parseDouble(JOptionPane.showInputDialog("Digite o pre√ßo do produto: "));
+				quantidadeProduto = Double.parseDouble(JOptionPane.showInputDialog("Digite a quantidade de produto: "));
+				codigo = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade de produto: "));
+				break;
+
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Digite apenas n√∫meros no padr√£o: EX = 4.67 ", "Erro", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		Produto produto = new Produto(nome, descricao, ean, unidadeMedida, preco, id);
+		Estoque estoque = new Estoque(quantidadeProduto, produto, codigo);
+		daoEstoque.adicionar(estoque);
+
 	}
 
 	public static Pessoa recuperarPessoa() {
