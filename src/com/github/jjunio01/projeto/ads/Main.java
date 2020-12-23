@@ -45,7 +45,7 @@ public class Main {
 					cadastrarEstoque();
 					break;
 				case "3":
-					cadastrarUsuario();
+					recuperarEstoque();
 
 					break;
 				case "4":
@@ -212,8 +212,14 @@ public class Main {
 		return null;
 	}
 
-	public static Estoque recuperarEstoque(Produto produto) {
-		return null;
+	public static Estoque recuperarEstoque() {
+		
+		String estoque = JOptionPane.showInputDialog("Digite o Nome do Produto:");
+		
+		EstoqueDAOImplTxt daoEstoque = new EstoqueDAOImplTxt();
+		Estoque recuperarEstoque = daoEstoque.consultar(estoque);
+		return recuperarEstoque;
+	
 	}
 
 	public static List<Pessoa> recuperarTodasPessoas() {
