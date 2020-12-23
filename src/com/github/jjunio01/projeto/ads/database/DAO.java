@@ -1,6 +1,6 @@
 package com.github.jjunio01.projeto.ads.database;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * @author JJunio
@@ -12,7 +12,7 @@ public interface DAO<T> {
 
 	public void atualizar(T t);
 
-	public List<T> listarTodos();
+	public ArrayList<T> listarTodos();
 
-	void adicionarLista(List<T> t);
+	void adicionarLista(ArrayList<T> t);
 }
