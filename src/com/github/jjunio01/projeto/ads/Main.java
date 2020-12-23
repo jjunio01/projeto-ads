@@ -58,10 +58,6 @@ public class Main {
 						String senha = JOptionPane.showInputDialog("Digite o sua senha");
 						if (senha.equals(usuario.getSenha())) {
 
-
-							cadastrarProduto();
-							cadastrarEstoque();
-
 							
 							String opcao = JOptionPane.showInputDialog(null,
 									"Informe a opÃ§Ã£o desejada! \n #1 Cadastrar Produto \n #2 Cadastrar no Estoque \n #3 Consultar Estoque \n #4 Retirar do Estoque \n #0 Sair", JOptionPane.QUESTION_MESSAGE);

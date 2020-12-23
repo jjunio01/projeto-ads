@@ -4,6 +4,7 @@
 package com.github.jjunio01.projeto.ads.estoque;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 
 /**
  * @author Petterson
@@ -56,9 +57,11 @@ public class Estoque implements Serializable {
 
 	@Override
 	public String toString() {
+		NumberFormat numeroFormatado = NumberFormat.getCurrencyInstance();
+		
 		return "Nome :" + this.getProduto().getNome() + "\n" + "Descrição :" + this.getProduto().getDescricao() + "\n"
 				+ "Ean :" + this.getProduto().getEan() + "\n" + "Unidade de Medida :"
-				+ this.getProduto().getUnidadeMedida() + "\n" + "Preço :" + this.getProduto().getPreco() + "\n" + "ID :"
+				+ this.getProduto().getUnidadeMedida() + "\n" + "Preço :" + numeroFormatado.format(this.getProduto().getPreco())  + "\n" + "ID :"
 				+ this.getProduto().getId() + "\n";
 
 	}
