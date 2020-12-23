@@ -46,7 +46,7 @@ public class Main {
 					cadastrarEstoque();
 					break;
 				case "3":
-
+					cadastrarUsuario();
 
 					break;
 				case "4":
@@ -57,9 +57,14 @@ public class Main {
 					if (usuario != null) {
 						String senha = JOptionPane.showInputDialog("Digite o sua senha");
 						if (senha.equals(usuario.getSenha())) {
+
+
+							cadastrarProduto();
+							cadastrarEstoque();
+
 							
 							String opcao = JOptionPane.showInputDialog(null,
-									"Informe a opção desejada! \n #1 Cadastrar Produto \n #2 Cadastrar no Estoque \n #3 Consultar Estoque \n #4 Retirar do Estoque \n #0 Sair", JOptionPane.QUESTION_MESSAGE);
+									"Informe a opÃ§Ã£o desejada! \n #1 Cadastrar Produto \n #2 Cadastrar no Estoque \n #3 Consultar Estoque \n #4 Retirar do Estoque \n #0 Sair", JOptionPane.QUESTION_MESSAGE);
 							
 							if (opcao.equals("1")) {
 								
@@ -82,8 +87,9 @@ public class Main {
 							else if(opcao.equals("0")) {
 								
 							}
-							else {JOptionPane.showMessageDialog(null, "Selecione uma opção válida!", "Erro", JOptionPane.ERROR_MESSAGE);}
+							else {JOptionPane.showMessageDialog(null, "Selecione uma opÃ§Ã£o vÃ¡lida!", "Erro", JOptionPane.ERROR_MESSAGE);}
 							
+
 
 						} else {
 							JOptionPane.showMessageDialog(null, "Senha incorreta!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -102,8 +108,8 @@ public class Main {
 					break;
 
 				default:
-					JOptionPane.showMessageDialog(null, "Escolha umas das opÃ§Ãµes validas do Menu", "Sistema CompreAqui",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Escolha umas das opções validas do Menu",
+							"Sistema CompreAqui", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
@@ -116,7 +122,7 @@ public class Main {
 
 		Object[] itens = { EnumBandeira.ELO, EnumBandeira.HIPERCARD, EnumBandeira.MASTERCARD, EnumBandeira.VISA };
 		String nome = JOptionPane.showInputDialog("Digite o seu Nome:");
-		String telefone = JOptionPane.showInputDialog("Digite o nÃºmero do seu telefone:");
+		String telefone = JOptionPane.showInputDialog("Digite o número do seu telefone:");
 		String cep = JOptionPane.showInputDialog("Digite o CEP:");
 		String estado = JOptionPane.showInputDialog("Estado:");
 		String cidade = JOptionPane.showInputDialog("Cidade:");
@@ -145,6 +151,7 @@ public class Main {
 		String login = JOptionPane.showInputDialog("Digite o seu login:");
 		String senha = JOptionPane.showInputDialog("Digite o sua senha");
 		Usuario usuario = new Usuario(login, senha);
+		daoUsuario.adicionar(usuario);
 		return usuario;
 	}
 
@@ -190,7 +197,7 @@ public class Main {
 		String descricao = JOptionPane.showInputDialog("Digite a descriÃ§Ã£o do produto:");
 		String ean = JOptionPane.showInputDialog("Digite o ean do produto:");
 		EnunUnidadeMedida unidadeMedida = (EnunUnidadeMedida) JOptionPane.showInputDialog(null,
-				"Escolha a unidade mÃ©dida", "OpÃ§Ã£o", JOptionPane.INFORMATION_MESSAGE, null, medidas, medidas[0]);
+				"Escolha a unidade médida", "Opções", JOptionPane.INFORMATION_MESSAGE, null, medidas, medidas[0]);
 
 		while (true) {
 			try {
@@ -201,7 +208,7 @@ public class Main {
 				break;
 
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Digite apenas nÃºmeros no padrÃ£o: EX = 4.67 ", "Erro",
+				JOptionPane.showMessageDialog(null, "Digite apenas números no padrão: EX = 4.67 ", "Erro",
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}
@@ -246,8 +253,8 @@ public class Main {
 		String estoque = JOptionPane.showInputDialog("Digite o Nome do Produto:");
 		
 		EstoqueDAOImplTxt daoEstoque = new EstoqueDAOImplTxt();
-		Estoque recuperarEstoque = daoEstoque.consultar(estoque);
-		return recuperarEstoque;
+		Estoque estoqueRecuperado = daoEstoque.consultar(estoque);
+		return estoqueRecuperado;
 	
 	}
 
@@ -267,9 +274,11 @@ public class Main {
 	}
 
 	public static List<Estoque> recuperarTodoEstoque() {
-		JOptionPane.showMessageDialog(null, "Estes s�o os produtos do estoque: \n" +  EstoqueDAOImplTxt.class, "Produtos", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Estes são os produtos do estoque: \n" +  EstoqueDAOImplTxt.class, "Produtos", JOptionPane.ERROR_MESSAGE);
 		return null;
 	}
+
+
 	public static void removerProdutoEstoque(Produto produto) {
 		int id = Integer.parseInt( JOptionPane.showInputDialog("Informe o ID produto que deseja remover:"));
 		recuperarProdutoId(id);
@@ -283,5 +292,6 @@ public class Main {
 		
 		
 	}
+
 
 }
