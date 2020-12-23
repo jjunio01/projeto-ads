@@ -42,6 +42,7 @@ public class Main {
 					cadastrarPessoa();
 					break;
 				case "2":
+					cadastrarEstoque();
 					break;
 				case "3":
 
@@ -54,8 +55,36 @@ public class Main {
 					if (usuario != null) {
 						String senha = JOptionPane.showInputDialog("Digite o sua senha");
 						if (senha.equals(usuario.getSenha())) {
-
-							cadastrarEstoque();
+							
+							String opcao = JOptionPane.showInputDialog(null,
+									"Informe a opção desejada! \n #1 Cadastrar Produto \n #2 Cadastrar no Estoque \n #3 Consultar Estoque \n #4 Retirar do Estoque \n #0 Sair", JOptionPane.QUESTION_MESSAGE);
+							
+							if (opcao.equals("1")) {
+								
+								cadastrarProduto();
+								
+							}else if(opcao.equals("2")) {
+								
+								cadastrarEstoque();
+								
+							}else if (opcao.equals("3")) {
+								
+								recuperarTodosProdutos();
+								
+							}else if (opcao.equals("4")) {
+								
+								removerProdutoEstoque();
+								
+								
+							}
+							else if(opcao.equals("0")) {
+								
+							}
+							else {JOptionPane.showMessageDialog(null, "Selecione uma opção válida!", "Erro", JOptionPane.ERROR_MESSAGE);}
+							
+							
+							
+							
 
 						} else {
 							JOptionPane.showMessageDialog(null, "Senha incorreta!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -63,7 +92,7 @@ public class Main {
 						}
 
 					} else {
-						JOptionPane.showMessageDialog(null, "Usuï¿½rio nï¿½o cadastrado!", "Erro",
+						JOptionPane.showMessageDialog(null, "Usuário não cadastrado!", "Erro",
 								JOptionPane.ERROR_MESSAGE);
 					}
 
@@ -74,8 +103,8 @@ public class Main {
 					break;
 
 				default:
-					JOptionPane.showMessageDialog(null, "Escolha umas das opÃ§Ãµes validas do Menu",
-							"Sistema CompreAqui", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Escolha umas das opÃ§Ãµes validas do Menu", "Sistema CompreAqui",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
@@ -117,7 +146,6 @@ public class Main {
 		String login = JOptionPane.showInputDialog("Digite o seu login:");
 		String senha = JOptionPane.showInputDialog("Digite o sua senha");
 		Usuario usuario = new Usuario(login, senha);
-		daoUsuario.adicionar(usuario);
 		return usuario;
 	}
 
@@ -227,6 +255,9 @@ public class Main {
 
 	public static List<Estoque> recuperarTodoEstoque() {
 		return null;
+	}
+	public static void removerProdutoEstoque() {
+		
 	}
 
 }
