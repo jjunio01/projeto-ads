@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import com.github.jjunio01.projeto.ads.database.ClienteDAOImplTxt;
 import com.github.jjunio01.projeto.ads.database.DAO;
+import com.github.jjunio01.projeto.ads.database.EstoqueDAO;
 import com.github.jjunio01.projeto.ads.database.EstoqueDAOImplTxt;
 import com.github.jjunio01.projeto.ads.database.UsuarioDAO;
 import com.github.jjunio01.projeto.ads.database.UsuarioDAOImplTxt;
@@ -70,7 +71,7 @@ public class Main {
 								
 							}else if (opcao.equals("3")) {
 								
-								recuperarTodosProdutos();
+								recuperarTodoEstoque();
 								
 							}else if (opcao.equals("4")) {
 								
@@ -82,9 +83,6 @@ public class Main {
 								
 							}
 							else {JOptionPane.showMessageDialog(null, "Selecione uma opção válida!", "Erro", JOptionPane.ERROR_MESSAGE);}
-							
-							
-							
 							
 
 						} else {
@@ -231,10 +229,15 @@ public class Main {
 	}
 
 	public static Produto recuperarProdutoNome(String nome) {
+		EstoqueDAOImplTxt produtoNome = new EstoqueDAOImplTxt();
+		
+		
 		return null;
 	}
 
 	public static Produto recuperarProdutoId(int id) {
+		
+		
 		return null;
 	}
 
@@ -257,13 +260,27 @@ public class Main {
 	}
 
 	public static List<Produto> recuperarTodosProdutos() {
+		//EstoqueDAOImplTxt daoEstoque = new EstoqueDAOImplTxt();
+		
+		
 		return null;
 	}
 
 	public static List<Estoque> recuperarTodoEstoque() {
+		JOptionPane.showMessageDialog(null, "Estes s�o os produtos do estoque: \n" +  EstoqueDAOImplTxt.class, "Produtos", JOptionPane.ERROR_MESSAGE);
 		return null;
 	}
-	public static void removerProdutoEstoque() {
+	public static void removerProdutoEstoque(Produto produto) {
+		int id = Integer.parseInt( JOptionPane.showInputDialog("Informe o ID produto que deseja remover:"));
+		recuperarProdutoId(id);
+			if (id) {
+				
+			}
+		
+		int quantidadeRemovida = Integer.parseInt( JOptionPane.showInputDialog("Informe a quantidade do produto que deseja remover:"));
+		
+		
+		
 		
 	}
 

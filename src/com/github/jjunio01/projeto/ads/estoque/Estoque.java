@@ -9,14 +9,14 @@ import java.io.Serializable;
  * @author Petterson
  *
  */
-public class Estoque implements Serializable{
+public class Estoque implements Serializable {
 
 	private double quantidadeProduto;
 	private Produto produto;
 	private int codigo;
 
 	public Estoque(double quantidadeProduto, Produto produto, int codigo) {
-		
+
 		this.quantidadeProduto = quantidadeProduto;
 		this.produto = produto;
 		this.codigo = codigo;
@@ -50,9 +50,16 @@ public class Estoque implements Serializable{
 		this.produto = produto;
 	}
 
-	
-
 	public void retirarProduto(Produto produto, double quatidade) {
+
+	}
+
+	@Override
+	public String toString() {
+		return "Nome :" + this.getProduto().getNome() + "\n" + "Descrição :" + this.getProduto().getDescricao() + "\n"
+				+ "Ean :" + this.getProduto().getEan() + "\n" + "Unidade de Medida :"
+				+ this.getProduto().getUnidadeMedida() + "\n" + "Preço :" + this.getProduto().getPreco() + "\n" + "ID :"
+				+ this.getProduto().getId() + "\n";
 
 	}
 }
