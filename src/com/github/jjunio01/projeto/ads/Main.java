@@ -1,5 +1,6 @@
 package com.github.jjunio01.projeto.ads;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -253,19 +254,23 @@ public class Main {
 	
 	}
 
-	public static List<Pessoa> recuperarTodasPessoas() {
-		return null;
+	public static ArrayList<Pessoa> recuperarTodasPessoas() {
+		ClienteDAOImplTxt listaPessoas = new ClienteDAOImplTxt();
+		
+		return listaPessoas.listarTodos();
+		
 	}
 
-	public static List<Usuario> recuperarTodosUsuarios() {
-		return null;
+	public static ArrayList<Usuario> recuperarTodosUsuarios() {
+		UsuarioDAOImplTxt listaUsuarios = new UsuarioDAOImplTxt();
+		return listaUsuarios.listarTodos();
 	}
 
-	public static List<Produto> recuperarTodosProdutos() {
-		//EstoqueDAOImplTxt daoEstoque = new EstoqueDAOImplTxt();
+	public static ArrayList<Estoque> recuperarTodosProdutos() {
+		EstoqueDAOImplTxt listaEstoque = new EstoqueDAOImplTxt();
 		
 		
-		return null;
+		return listaEstoque.listarTodos();
 	}
 
 	public static List<Estoque> recuperarTodoEstoque() {
