@@ -1,5 +1,6 @@
 package com.github.jjunio01.projeto.ads.vendas;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import com.github.jjunio01.projeto.ads.estoque.Produto;
@@ -44,11 +45,13 @@ public class Carrinho {
 
 	@Override
 	public String toString() {
+		NumberFormat numeroFormatado = NumberFormat.getCurrencyInstance();
+		
 		String carrinho = "";
 
 		for (int i = 0; i < this.listaProdutos.size(); i++) {
 			carrinho += "Nome: " + this.listaProdutos.get(i).getNome() + "\nValor unitário R$: "
-					+ this.listaProdutos.get(i).getPreco() + "\nQuantidade :" + this.quantidade + "\n";
+					+ numeroFormatado.format(this.listaProdutos.get(i).getPreco()) + "\nQuantidade :" + this.quantidade + "\n";
 		}
 
 		return carrinho;

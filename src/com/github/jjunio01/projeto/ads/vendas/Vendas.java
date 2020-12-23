@@ -86,4 +86,9 @@ public class Vendas {
 		return status;
 	}
 
+	public String toString() {
+		return "Cliente :" + this.getCliente() + "\n" + "Carrinho :" + this.getCarrinho() + "\n" + "Status da venda :"
+				+ this.getStatus();
+	}
+
 }
