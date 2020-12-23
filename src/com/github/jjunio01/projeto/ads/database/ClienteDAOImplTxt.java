@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import com.github.jjunio01.projeto.ads.entidades.Pessoa;
+import com.github.jjunio01.projeto.ads.estoque.Estoque;
 
 /**
  * @author JJunio
@@ -17,117 +18,91 @@ public class ClienteDAOImplTxt implements ClienteDAO {
 	private final String caminho = "databaseClientes.txt";
 
 	@Override
-	public void adicionar(Pessoa t) {
+	public void adicionar(Pessoa cliente) {
 
-		List<Pessoa> clientesCadastrados = listarTodos();
-		if (clientesCadastrados != null) {
-			clientesCadastrados.add(t);
+		ArrayList<Pessoa> databaseClientes = listarTodos();
 
+		if (databaseClientes != null) {
+			databaseClientes.add(cliente);
 			try {
-				FileUtil.gravarInformacoes(clientesCadastrados, caminho);
-				JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso", "Sistema CompreAqui",
-						JOptionPane.INFORMATION_MESSAGE);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Erro ao acessar banco de dados.", "Sistema CompreAqui",
-						JOptionPane.ERROR_MESSAGE);
-			}
-		} else {
-			try {
-				FileUtil.gravarInformacoes(clientesCadastrados, caminho);
-				JOptionPane.showMessageDialog(null, "Cadastro Realizado com sucesso", "Sistema CompreAqui",
+				FileUtil.gravarInformacoes(databaseClientes, caminho);
+				JOptionPane.showMessageDialog(null, "Produto adicionado ao estoque com sucesso.", "Sistema CompreAqui",
 						JOptionPane.INFORMATION_MESSAGE);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-
-	}
-
-	@Override
-	public Pessoa consultar(String nome) {
-
-		List<Pessoa> clientesCadastrados = listarTodos();
-		if (clientesCadastrados.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Nenhum cliente cadastrado", "Sistema CompreAqui",
-					JOptionPane.ERROR_MESSAGE);
 		} else {
+			ArrayList<Pessoa> novoDataBaseClientes = new ArrayList();
+			novoDataBaseClientes.add(cliente);
+			try {
+				FileUtil.gravarInformacoes(novoDataBaseClientes, caminho);
+				JOptionPane.showMessageDialog(null, "Cadastro realizado com Sucesso.", "Sistema CompreAqui",
+						JOptionPane.INFORMATION_MESSAGE);
 
-			for (Pessoa pessoaCadastrada : clientesCadastrados) {
-				if (pessoaCadastrada.getNome().equals(nome)) {
-					clientesCadastrados.remove(pessoaCadastrada);
-					adicionarLista(clientesCadastrados);
-					return pessoaCadastrada;
-				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
-		return null;
+
 	}
 
-	@Override
-	public void remover(String nome) {
-
-		List<Pessoa> clientesCadastrados = listarTodos();
-		if (clientesCadastrados.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Nenhum cliente cadastrado para remoção", "Sistema CompreAqui",
-					JOptionPane.ERROR_MESSAGE);
-		} else {
-			for (Pessoa pessoaCadastrada : clientesCadastrados) {
-				if (pessoaCadastrada.getNome().equals(nome)) {
-					clientesCadastrados.remove(pessoaCadastrada);
-					adicionarLista(clientesCadastrados);
-					JOptionPane.showMessageDialog(null, "Usuário removido com sucesso.", "Sistema CompreAqui",
-							JOptionPane.INFORMATION_MESSAGE);
-					return;
-				}
-			}
-		}
-	}
 
 	@Override
-	public void atualizar(Pessoa t) {
-
-		List<Pessoa> clientesCadastrados = listarTodos();
-		if (clientesCadastrados.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Nenhum cliente cadastrado para atualização", "Sistema CompreAqui",
-					JOptionPane.ERROR_MESSAGE);
-		} else {
-			for (Pessoa pessoaCadastrada : clientesCadastrados) {
-				if (pessoaCadastrada.getNome().equals(t.getNome())) {
-					clientesCadastrados.remove(pessoaCadastrada);
-					clientesCadastrados.add(t);
-					adicionarLista(clientesCadastrados);
-					JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso.", "Sistema CompreAqui",
-							JOptionPane.INFORMATION_MESSAGE);
-					return;
-				}
-			}
-		}
-	}
-
-	@Override
-	public List<Pessoa> listarTodos() {
+	public ArrayList<Pessoa> listarTodos() {
 		try {
 			return (ArrayList<Pessoa>) FileUtil.recuperarInformacoes(caminho);
 
 		} catch (ClassNotFoundException | IOException e) {
+
+			JOptionPane.showMessageDialog(null, "Erro ao acessar banco de dados.", "Sistema CompreAqui",
+					JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
 	}
 
-	@Override
-	public void adicionarLista(List<Pessoa> p) {
-		try {
-			FileUtil.gravarInformacoes(p, caminho);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Erro ao acessar banco de dados.", "Sistema CompreAqui",
-					JOptionPane.ERROR_MESSAGE);
-		}
 
+
+	public Pessoa consultar(String nome) {
+
+		ArrayList<Pessoa> pessoasCadastradas = listarTodos();
+
+		if (pessoasCadastradas == null) {
+
+			JOptionPane.showMessageDialog(null, "Não existe produtos no estoque", "Sistema CompreAqui",
+					JOptionPane.ERROR_MESSAGE);
+		} else {
+
+			for (int i = 0; i < pessoasCadastradas.size(); i++) {
+				if (pessoasCadastradas.get(i).getNome().equals(nome)) {
+					return pessoasCadastradas.get(i);
+				}
+			}
+
+		}
+		return null;
+	}
+
+
+	@Override
+	public void atualizar(Pessoa t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void adicionarLista(ArrayList<Pessoa> t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void remover(String nome) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

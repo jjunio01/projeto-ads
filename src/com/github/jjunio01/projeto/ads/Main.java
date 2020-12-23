@@ -30,11 +30,8 @@ public class Main {
 
 		while (executando) {
 			String menu = JOptionPane.showInputDialog(null,
-					"#1 - Realizar Cadastro\n" + 
-					"#2 - Comprar\n" + 
-					"#3 - Consultar compras realizadas\n" +
-					"#4 - Gerenciar Estoque\n" + 
-					"#5 - Sair",
+					"#1 - Realizar Cadastro\n" + "#2 - Comprar\n" + "#3 - Consultar compras realizadas\n"
+							+ "#4 - Gerenciar Estoque\n" + "#5 - Sair",
 					"Sistema CompreAqui", JOptionPane.QUESTION_MESSAGE);
 			if (menu == null) {
 				break;
@@ -45,10 +42,8 @@ public class Main {
 					cadastrarPessoa();
 					break;
 				case "2":
-					cadastrarEstoque();
 					break;
 				case "3":
-					cadastrarUsuario();
 
 					break;
 				case "4":
@@ -60,7 +55,6 @@ public class Main {
 						String senha = JOptionPane.showInputDialog("Digite o sua senha");
 						if (senha.equals(usuario.getSenha())) {
 
-							cadastrarProduto();
 							cadastrarEstoque();
 
 						} else {
