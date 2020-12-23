@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author Petterson
  *
  */
-public class Produto implements Serializable{
+public class Produto implements Serializable {
 
 	private String nome;
 	private String descricao;
@@ -72,6 +72,10 @@ public class Produto implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
+	public String toString() {
+		return "Nome :" + this.getNome() + "\n" + "Descrção :" + this.getDescricao() + "\n" + "Ean :" + this.getEan()
+				+ "\n" + "Unidade de Medida :" + this.getUnidadeMedida() + "\n" + "Preço :" + this.getPreco();
+	}
 
 }
