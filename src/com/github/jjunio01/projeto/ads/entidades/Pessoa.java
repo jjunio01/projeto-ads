@@ -62,6 +62,12 @@ public class Pessoa implements Serializable {
 	public void setCartaocredito(CartaoCredito cartaocredito) {
 		this.cartaocredito = cartaocredito;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Nome: " + this.getNome() + "\n" + "Login: " + this.usuario.getLogin() + "\n" + "Telefone: "
+				+ this.getTelefone() + "\n" + "Endereço: " + "\n -----------\n" + "Cartão de Crédito: "
+				+ this.getCartaocredito().getNumero();
+	}
 
 }
