@@ -2,7 +2,6 @@ package com.github.jjunio01.projeto.ads.database;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -17,28 +16,44 @@ public class UsuarioDAOImplTxt implements UsuarioDAO {
 	private final String caminho = "databaseUsuarios.txt";
 
 	@Override
-	public void remover(String login) {
+	public void adicionar(Usuario usuario) {
 
-		List<Usuario> usuarioCadastrados = listarTodos();
-		if (usuarioCadastrados.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Nenhum usuário cadastrado para remoção", "Sistema CompreAqui",
-					JOptionPane.ERROR_MESSAGE);
+		ArrayList<Usuario> listaUsuarios = listarTodos();
+
+		if (listaUsuarios != null) {
+			listaUsuarios.add(usuario);
+			try {
+				FileUtil.gravarInformacoes(listaUsuarios, caminho);
+				JOptionPane.showMessageDialog(null, "Cadastro realizado com Sucesso.", "Sistema CompreAqui",
+						JOptionPane.INFORMATION_MESSAGE);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
-			for (Usuario cadastrado : usuarioCadastrados) {
-				if (cadastrado.getLogin().equals(login)) {
-					usuarioCadastrados.remove(cadastrado);
-					adicionarLista(usuarioCadastrados);
-					JOptionPane.showMessageDialog(null, "Usuário removido com sucesso.", "Sistema CompreAqui",
-							JOptionPane.INFORMATION_MESSAGE);
-					return;
-				}
+			ArrayList<Usuario> listaUsuarioNovo = new ArrayList();
+			listaUsuarioNovo.add(usuario);
+			try {
+				FileUtil.gravarInformacoes(listaUsuarioNovo, caminho);
+				JOptionPane.showMessageDialog(null, "Cadastro realizado com Sucesso.", "Sistema CompreAqui",
+						JOptionPane.INFORMATION_MESSAGE);
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
+
 	}
 
 	@Override
-	public List<Usuario> listarTodos() {
+	public void atualizar(Usuario t) {
+		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public ArrayList<Usuario> listarTodos() {
 		try {
 			return (ArrayList<Usuario>) FileUtil.recuperarInformacoes(caminho);
 
@@ -51,84 +66,35 @@ public class UsuarioDAOImplTxt implements UsuarioDAO {
 	}
 
 	@Override
-	public void adicionar(Usuario usuario) {
+	public void adicionarLista(ArrayList<Usuario> t) {
+		// TODO Auto-generated method stub
 
-		List<Usuario> usuarioCadastrados = listarTodos();
-		
-		if (usuarioCadastrados != null) {
-			usuarioCadastrados.add(usuario);
-			try {
-				FileUtil.gravarInformacoes(usuarioCadastrados, caminho);
-				JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso.", "Sistema CompreAqui",
-						JOptionPane.ERROR_MESSAGE);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-		} else {
-			try {
-				FileUtil.gravarInformacoes(usuarioCadastrados, caminho);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso.", "Sistema CompreAqui",
-					JOptionPane.ERROR_MESSAGE);
-		}
-		
-		
-		
 	}
 
 	@Override
-	public void atualizar(Usuario t) {
-
-		List<Usuario> usuarioCadastrados = listarTodos();
-		if (usuarioCadastrados.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Nenhum usuário cadastrado para atualização.", "Sistema CompreAqui",
-					JOptionPane.ERROR_MESSAGE);
-		} else {
-			for (Usuario cadastrado : usuarioCadastrados) {
-				if (cadastrado.getLogin().equals(t.getLogin())) {
-					usuarioCadastrados.remove(cadastrado);
-					usuarioCadastrados.add(t);
-					adicionarLista(usuarioCadastrados);
-					JOptionPane.showMessageDialog(null, "Usuário atualizado com sucesso.", "Sistema CompreAqui",
-							JOptionPane.INFORMATION_MESSAGE);
-					return;
-				}
-			}
-		}
-	}
-
-	@Override
-	public void adicionarLista(List<Usuario> t) {
-		try {
-			FileUtil.gravarInformacoes(t, caminho);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Erro ao acessar banco de dados.", "Sistema CompreAqui",
-					JOptionPane.ERROR_MESSAGE);
-		}
+	public void remover(String login) {
+		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public Usuario consultar(String login) {
 
-		List<Usuario> usuarioCadastrados = listarTodos();
-		if (usuarioCadastrados.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Nenhum usuário cadastrado para consulta", "Sistema CompreAqui",
+		ArrayList<Usuario> usuarioCadastrado = listarTodos();
+
+		if (usuarioCadastrado == null) {
+
+			JOptionPane.showMessageDialog(null, "Não existe usuário cadastrado", "Sistema CompreAqui",
 					JOptionPane.ERROR_MESSAGE);
 		} else {
-			for (Usuario cadastrado : usuarioCadastrados) {
-				if (cadastrado.getLogin().equals(login)) {
-					return cadastrado;
+
+			for (int i = 0; i < usuarioCadastrado.size(); i++) {
+				if (usuarioCadastrado.get(i).getLogin().equals(login)) {
+					return usuarioCadastrado.get(i);
 				}
 			}
-		}
 
+		}
 		return null;
 	}
 
