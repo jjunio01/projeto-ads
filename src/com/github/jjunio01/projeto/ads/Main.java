@@ -45,7 +45,7 @@ public class Main {
 					cadastrarEstoque();
 					break;
 				case "3":
-
+					cadastrarUsuario();
 
 					break;
 				case "4":
@@ -56,36 +56,9 @@ public class Main {
 					if (usuario != null) {
 						String senha = JOptionPane.showInputDialog("Digite o sua senha");
 						if (senha.equals(usuario.getSenha())) {
-							
-							String opcao = JOptionPane.showInputDialog(null,
-									"Informe a opção desejada! \n #1 Cadastrar Produto \n #2 Cadastrar no Estoque \n #3 Consultar Estoque \n #4 Retirar do Estoque \n #0 Sair", JOptionPane.QUESTION_MESSAGE);
-							
-							if (opcao.equals("1")) {
-								
-								cadastrarProduto();
-								
-							}else if(opcao.equals("2")) {
-								
-								cadastrarEstoque();
-								
-							}else if (opcao.equals("3")) {
-								
-								recuperarTodosProdutos();
-								
-							}else if (opcao.equals("4")) {
-								
-								removerProdutoEstoque();
-								
-								
-							}
-							else if(opcao.equals("0")) {
-								
-							}
-							else {JOptionPane.showMessageDialog(null, "Selecione uma opção válida!", "Erro", JOptionPane.ERROR_MESSAGE);}
-							
-							
-							
-							
+
+							cadastrarProduto();
+							cadastrarEstoque();
 
 						} else {
 							JOptionPane.showMessageDialog(null, "Senha incorreta!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -93,7 +66,7 @@ public class Main {
 						}
 
 					} else {
-						JOptionPane.showMessageDialog(null, "Usuário não cadastrado!", "Erro",
+						JOptionPane.showMessageDialog(null, "Usu�rio n�o cadastrado!", "Erro",
 								JOptionPane.ERROR_MESSAGE);
 					}
 
@@ -104,8 +77,8 @@ public class Main {
 					break;
 
 				default:
-					JOptionPane.showMessageDialog(null, "Escolha umas das opÃ§Ãµes validas do Menu", "Sistema CompreAqui",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Escolha umas das op��es validas do Menu",
+							"Sistema CompreAqui", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}
@@ -118,20 +91,20 @@ public class Main {
 
 		Object[] itens = { EnumBandeira.ELO, EnumBandeira.HIPERCARD, EnumBandeira.MASTERCARD, EnumBandeira.VISA };
 		String nome = JOptionPane.showInputDialog("Digite o seu Nome:");
-		String telefone = JOptionPane.showInputDialog("Digite o nÃºmero do seu telefone:");
+		String telefone = JOptionPane.showInputDialog("Digite o n�mero do seu telefone:");
 		String cep = JOptionPane.showInputDialog("Digite o CEP:");
 		String estado = JOptionPane.showInputDialog("Estado:");
 		String cidade = JOptionPane.showInputDialog("Cidade:");
 		String bairro = JOptionPane.showInputDialog("Bairro");
 		String rua = JOptionPane.showInputDialog("Rua");
-		String numero = JOptionPane.showInputDialog("NÃºmero da ResidÃªncia;");
+		String numero = JOptionPane.showInputDialog("Número da Residência;");
 		Endereco endereco = new Endereco(rua, numero, cep, bairro, cidade, estado);
-		EnumBandeira bandeira = (EnumBandeira) JOptionPane.showInputDialog(null, "Escolha a bandeira do cartÃ£o",
-				"OpÃ§ao", JOptionPane.INFORMATION_MESSAGE, null, itens, itens[0]);
-		String numeroCartao = JOptionPane.showInputDialog("Digite o nÃºmero do seu cartÃ£o:");
+		EnumBandeira bandeira = (EnumBandeira) JOptionPane.showInputDialog(null, "Escolha a bandeira do cartão",
+				"Opçao", JOptionPane.INFORMATION_MESSAGE, null, itens, itens[0]);
+		String numeroCartao = JOptionPane.showInputDialog("Digite o número do seu cartão:");
 		double limite = Double.parseDouble(JOptionPane.showInputDialog("Limite:"));
-		String cvv = JOptionPane.showInputDialog("CVV (CÃ³digo por trÃ¡s do cartÃ£o):");
-		String nomeCartao = JOptionPane.showInputDialog("Digite o nome presente cartÃ£o:");
+		String cvv = JOptionPane.showInputDialog("CVV (Código por trás do cartão):");
+		String nomeCartao = JOptionPane.showInputDialog("Digite o nome presente cartão:");
 		String validade = JOptionPane.showInputDialog("Validade:");
 		CartaoCredito cartaoCredito = new CartaoCredito(bandeira, numeroCartao, limite, cvv, nomeCartao, validade);
 		Usuario usuario = cadastrarUsuario();
@@ -147,6 +120,7 @@ public class Main {
 		String login = JOptionPane.showInputDialog("Digite o seu login:");
 		String senha = JOptionPane.showInputDialog("Digite o sua senha");
 		Usuario usuario = new Usuario(login, senha);
+		daoUsuario.adicionar(usuario);
 		return usuario;
 	}
 
@@ -156,22 +130,22 @@ public class Main {
 				EnunUnidadeMedida.ML, EnunUnidadeMedida.KILO, EnunUnidadeMedida.UNIDADE };
 
 		String nome = JOptionPane.showInputDialog("Digite o Nome do produto:");
-		String descricao = JOptionPane.showInputDialog("Digite a descriÃ§Ã£o do produto:");
-		String ean = JOptionPane.showInputDialog("Digite o cÃ³digo ean do produto:");
+		String descricao = JOptionPane.showInputDialog("Digite a descrição do produto:");
+		String ean = JOptionPane.showInputDialog("Digite o código ean do produto:");
 		EnunUnidadeMedida unidadeMedida = (EnunUnidadeMedida) JOptionPane.showInputDialog(null,
-				"Informe a Unidade de Medida do Produto", "OpÃ§ao", JOptionPane.INFORMATION_MESSAGE, null, medidas,
+				"Informe a Unidade de Medida do Produto", "Opçao", JOptionPane.INFORMATION_MESSAGE, null, medidas,
 				medidas[5]);
 
 		while (true) {
 			try {
-				double preco = Double.parseDouble(JOptionPane.showInputDialog("Informe o preÃ§o do produto:"));
+				double preco = Double.parseDouble(JOptionPane.showInputDialog("Informe o preço do produto:"));
 				int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do produto:"));
 
 				break;
 			} catch (Exception e) {
 
-				JOptionPane.showMessageDialog(null, "Forneï¿½a uma informaï¿½ï¿½o vï¿½lida!",
-						"Valores numï¿½ricos Ex. 47.02", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Forne�a uma informa��o v�lida!",
+						"Valores num�ricos Ex. 47.02", JOptionPane.ERROR_MESSAGE);
 
 			}
 		}
@@ -189,21 +163,21 @@ public class Main {
 				EnunUnidadeMedida.ML, EnunUnidadeMedida.KILO, EnunUnidadeMedida.UNIDADE };
 		EstoqueDAOImplTxt daoEstoque = new EstoqueDAOImplTxt();
 		String nome = JOptionPane.showInputDialog("Digite o nome do produto:");
-		String descricao = JOptionPane.showInputDialog("Digite a descriÃ§Ã£o do produto:");
+		String descricao = JOptionPane.showInputDialog("Digite a descrição do produto:");
 		String ean = JOptionPane.showInputDialog("Digite o ean do produto:");
 		EnunUnidadeMedida unidadeMedida = (EnunUnidadeMedida) JOptionPane.showInputDialog(null,
-				"Escolha a unidade mÃ©dida", "OpÃ§Ã£o", JOptionPane.INFORMATION_MESSAGE, null, medidas, medidas[0]);
+				"Escolha a unidade m�dida", "Op��es", JOptionPane.INFORMATION_MESSAGE, null, medidas, medidas[0]);
 
 		while (true) {
 			try {
 				id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID de produto: "));
-				preco = Double.parseDouble(JOptionPane.showInputDialog("Digite o preÃ§o do produto: "));
+				preco = Double.parseDouble(JOptionPane.showInputDialog("Digite o preço do produto: "));
 				quantidadeProduto = Double.parseDouble(JOptionPane.showInputDialog("Digite a quantidade de produto: "));
 				codigo = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade de produto: "));
 				break;
 
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(null, "Digite apenas nÃºmeros no padrÃ£o: EX = 4.67 ", "Erro",
+				JOptionPane.showMessageDialog(null, "Digite apenas n�meros no padr�o: EX = 4.67 ", "Erro",
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}
@@ -243,8 +217,8 @@ public class Main {
 		String estoque = JOptionPane.showInputDialog("Digite o Nome do Produto:");
 		
 		EstoqueDAOImplTxt daoEstoque = new EstoqueDAOImplTxt();
-		Estoque recuperarEstoque = daoEstoque.consultar(estoque);
-		return recuperarEstoque;
+		Estoque estoqueRecuperado = daoEstoque.consultar(estoque);
+		return estoqueRecuperado;
 	
 	}
 
@@ -262,9 +236,6 @@ public class Main {
 
 	public static List<Estoque> recuperarTodoEstoque() {
 		return null;
-	}
-	public static void removerProdutoEstoque() {
-		
 	}
 
 }
