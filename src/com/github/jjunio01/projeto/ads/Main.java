@@ -80,8 +80,7 @@ public class Main {
 								
 							}else if (opcao.equals("4")) {
 								
-								removerProdutoEstoque();
-								
+								//removerProdutoEstoque();
 								
 							}
 							else if(opcao.equals("0")) {
@@ -282,9 +281,7 @@ public class Main {
 	public static void removerProdutoEstoque(Produto produto) {
 		int id = Integer.parseInt( JOptionPane.showInputDialog("Informe o ID produto que deseja remover:"));
 		recuperarProdutoId(id);
-			if (id) {
-				
-			}
+			
 		
 		int quantidadeRemovida = Integer.parseInt( JOptionPane.showInputDialog("Informe a quantidade do produto que deseja remover:"));
 		
