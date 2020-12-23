@@ -1,5 +1,6 @@
 package com.github.jjunio01.projeto.ads;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -58,10 +59,6 @@ public class Main {
 						String senha = JOptionPane.showInputDialog("Digite o sua senha");
 						if (senha.equals(usuario.getSenha())) {
 
-
-							cadastrarProduto();
-							cadastrarEstoque();
-
 							
 							String opcao = JOptionPane.showInputDialog(null,
 									"Informe a opÃ§Ã£o desejada! \n #1 Cadastrar Produto \n #2 Cadastrar no Estoque \n #3 Consultar Estoque \n #4 Retirar do Estoque \n #0 Sair", JOptionPane.QUESTION_MESSAGE);
@@ -80,8 +77,7 @@ public class Main {
 								
 							}else if (opcao.equals("4")) {
 								
-								removerProdutoEstoque();
-								
+								//removerProdutoEstoque();
 								
 							}
 							else if(opcao.equals("0")) {
@@ -258,19 +254,23 @@ public class Main {
 	
 	}
 
-	public static List<Pessoa> recuperarTodasPessoas() {
-		return null;
+	public static ArrayList<Pessoa> recuperarTodasPessoas() {
+		ClienteDAOImplTxt listaPessoas = new ClienteDAOImplTxt();
+		
+		return listaPessoas.listarTodos();
+		
 	}
 
-	public static List<Usuario> recuperarTodosUsuarios() {
-		return null;
+	public static ArrayList<Usuario> recuperarTodosUsuarios() {
+		UsuarioDAOImplTxt listaUsuarios = new UsuarioDAOImplTxt();
+		return listaUsuarios.listarTodos();
 	}
 
-	public static List<Produto> recuperarTodosProdutos() {
-		//EstoqueDAOImplTxt daoEstoque = new EstoqueDAOImplTxt();
+	public static ArrayList<Estoque> recuperarTodosProdutos() {
+		EstoqueDAOImplTxt listaEstoque = new EstoqueDAOImplTxt();
 		
 		
-		return null;
+		return listaEstoque.listarTodos();
 	}
 
 	public static List<Estoque> recuperarTodoEstoque() {
@@ -282,9 +282,7 @@ public class Main {
 	public static void removerProdutoEstoque(Produto produto) {
 		int id = Integer.parseInt( JOptionPane.showInputDialog("Informe o ID produto que deseja remover:"));
 		recuperarProdutoId(id);
-			if (id) {
-				
-			}
+			
 		
 		int quantidadeRemovida = Integer.parseInt( JOptionPane.showInputDialog("Informe a quantidade do produto que deseja remover:"));
 		

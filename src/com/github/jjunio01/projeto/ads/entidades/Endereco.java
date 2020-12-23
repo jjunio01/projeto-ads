@@ -71,4 +71,10 @@ public class Endereco implements Serializable {
 		this.estado = estado;
 	}
 
+	public String toString() {
+		return "Rua :" + this.getRua() + "\n" + "Número :" + this.getNumero() + "\n" + "CEP :" + this.getCep() + "\n"
+				+ "Bairro :" + this.getBairro() + "\n" + "Cidade :" + this.getCidade() + "\n" + "Estado"
+				+ this.getEstado();
+	}
+
 }
