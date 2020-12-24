@@ -201,8 +201,7 @@ public class Main {
 		double limite = 0;
 		while (true) {
 			try {
-				limite = Double.parseDouble(JOptionPane.showInputDialog("Informe o preÃƒÂ§o do produto:"));
-				int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do produto:"));
+				limite = Double.parseDouble(JOptionPane.showInputDialog("Informe o limite do cart�o:"));
 
 				break;
 			} catch (Exception e) {
@@ -370,16 +369,21 @@ public class Main {
 
 	}
 
-	public static void removerProdutoEstoque() {
-		EstoqueDAOImplTxt removerProduto = new EstoqueDAOImplTxt();
+	public static void atualizarProdutoEstoque() {
+		EstoqueDAOImplTxt daoProduto = new EstoqueDAOImplTxt();
 		try {
 			int id = Integer.parseInt(JOptionPane.showInputDialog("Informe o ID produto que deseja remover:"));
 			Estoque idRemocao = recuperarProdutoId(id);
 
 			double quantidadeRemovidaUsuario = Double
 					.parseDouble(JOptionPane.showInputDialog("Informe a quantidade do produto que deseja remover:"));
-			removerProduto.remover(idRemocao);
-			JOptionPane.showInputDialog("Produto removido com sucesso!");
+			if (quantidadeRemovidaUsuario <= idRemocao.getQuantidadeProduto()) {
+				daoProduto.atualizarQuantidade(idRemocao, quantidadeRemovidaUsuario);
+				JOptionPane.showInputDialog("Quantidade de produtos atualizada com sucesso!");
+			} else {
+				JOptionPane.showInputDialog("Quantidade informada � superior a quantidade existente no estoque!" + "\n"
+						+ idRemocao.getQuantidadeProduto() + "produtos no estoque atualmente");
+			}
 
 		} catch (Exception e) {
 
