@@ -317,16 +317,12 @@ public class Main {
 		return listaUsuarios.listarTodos();
 	}
 
-	public static ArrayList<Estoque> recuperarTodosProdutos() {
+
+	public static List<Estoque> recuperarTodoEstoque() {
 		EstoqueDAOImplTxt listaEstoque = new EstoqueDAOImplTxt();
 
 		return listaEstoque.listarTodos();
-	}
-
-	public static List<Estoque> recuperarTodoEstoque() {
-		JOptionPane.showMessageDialog(null, "Estes são os produtos do estoque: \n" + EstoqueDAOImplTxt.class,
-				"Produtos", JOptionPane.ERROR_MESSAGE);
-		return null;
+		
 	}
 
 	public static void removerProdutoEstoque(Produto produto) {
