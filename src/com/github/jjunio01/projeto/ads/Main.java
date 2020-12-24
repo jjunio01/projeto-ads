@@ -177,7 +177,7 @@ public class Main {
 
 								} else if (opcao.equals("4")) {
 
-									// removerProdutoEstoque();
+									atualizarProdutoEstoque();
 
 								} else if (opcao.equals("0")) {
 									logado = false;
@@ -359,9 +359,9 @@ public class Main {
 		Estoque idCadastrado = null;
 
 		try {
-			int idProduto = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Produto:"));
+
 			EstoqueDAOImplTxt daoProduto = new EstoqueDAOImplTxt();
-			idCadastrado = daoProduto.consultar(idProduto);
+			idCadastrado = daoProduto.consultar(id);
 
 		} catch (Exception e) {
 
@@ -413,10 +413,11 @@ public class Main {
 					.parseDouble(JOptionPane.showInputDialog("Informe a quantidade do produto que deseja remover:"));
 			if (quantidadeRemovidaUsuario <= idRemocao.getQuantidadeProduto()) {
 				daoProduto.atualizarQuantidade(idRemocao, quantidadeRemovidaUsuario);
-				JOptionPane.showInputDialog("Quantidade de produtos atualizada com sucesso!");
+				JOptionPane.showMessageDialog(null, "Quantidade de produtos atualizada com sucesso! "
+						+ recuperarProdutoId(id).getQuantidadeProduto() + " produtos no estoque.");
 			} else {
-				JOptionPane.showInputDialog("Quantidade informada é superior a quantidade existente no estoque!" + "\n"
-						+ idRemocao.getQuantidadeProduto() + "produtos no estoque atualmente");
+				JOptionPane.showMessageDialog(null, "Quantidade informada é superior a quantidade existente no estoque!"
+						+ "\n" + idRemocao.getQuantidadeProduto() + "produtos no estoque atualmente");
 			}
 
 		} catch (Exception e) {
