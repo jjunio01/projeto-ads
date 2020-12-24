@@ -146,7 +146,7 @@ public class EstoqueDAOImplTxt implements EstoqueDAO {
 		
 	}
 
-	public void atualizarQuantidade(Estoque estoque, int quantidade) {
+	public void atualizarQuantidade(Estoque estoque, double quantidade) {
 		ArrayList<Estoque> estoqueDisponivel = listarTodos();
 
 		Estoque estoqueRecuperado = consultar(estoque.getCodigo());
