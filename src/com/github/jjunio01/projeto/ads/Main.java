@@ -38,8 +38,8 @@ public class Main {
 
 		while (executando) {
 			String menu = JOptionPane.showInputDialog(null,
-					"#1 - Realizar Cadastro\n" + "#2 - Comprar\n" + "#3 - Consultar compras realizadas\n"
-							+ "#4 - Gerenciar Estoque\n" + "#5 - Sair",
+					"#1 - Realizar Cadastro\n" + "#2 - Comprar\n" + "#3 - - Gerenciar Estoque \n"
+							+  "#0 - Sair",
 					"Sistema CompreAqui", JOptionPane.QUESTION_MESSAGE);
 			if (menu == null) {
 				break;
@@ -130,10 +130,8 @@ public class Main {
 
 					} while (preenchendoCarrinho);
 					break;
+				
 				case "3":
-
-					break;
-				case "4":
 
 					String login = JOptionPane.showInputDialog("Digite o seu login:");
 
@@ -211,7 +209,7 @@ public class Main {
 
 					break;
 
-				case "5":
+				case "0":
 					executando = false;
 					break;
 
