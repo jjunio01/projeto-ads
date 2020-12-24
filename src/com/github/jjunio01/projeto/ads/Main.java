@@ -23,7 +23,9 @@ import com.github.jjunio01.projeto.ads.vendas.Carrinho;
 
 /**
  * @author JJunio
- *
+ * @author Édrey Lucas
+ * @author Mikael C. Barros
+ * @author Petterson		 
  */
 public class Main {
 
