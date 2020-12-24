@@ -66,12 +66,22 @@ public class Main {
 							if (senha.equals(usuario.getSenha())) {
 
 								String opcao = JOptionPane.showInputDialog(null,
-										"Informe a opÃ§Ã£o desejada! \n #1 Consultar Todo Estoque \n #2 Cadastrar no Estoque \n #3 Consultar Estoque \n #4 Retirar do Estoque \n #0 Sair",
+										"Informe a opÃ§Ã£o desejada! \n #1 Consultar Todo Estoque \n #2 Cadastrar no Estoque \n #3 Consultar Produto do Estoque \n #4 Retirar do Estoque \n #0 Sair",
 										JOptionPane.QUESTION_MESSAGE);
 
 								if (opcao.equals("1")) {
-
-									recuperarTodoEstoque();
+									String estoqueTela = "";
+									ArrayList<Estoque> estoqueDisponivel = recuperarTodoEstoque();
+									
+									if (estoqueDisponivel == null) {
+										JOptionPane.showMessageDialog(null, "Nenhum produto cadastrado",
+												"Estoque", JOptionPane.ERROR_MESSAGE);
+									} else {
+										for (int i = 0; i < estoqueDisponivel.size(); i++  ) {
+											estoqueTela +="Produto: " +  estoqueDisponivel.get(i).getProduto().getNome() + " possui " + estoqueDisponivel.get(i).getProduto().getNome() + " unidades no estoque."; 
+										}
+									}
+									
 
 								} else if (opcao.equals("2")) {
 
@@ -280,16 +290,10 @@ public class Main {
 		return listaUsuarios.listarTodos();
 	}
 
-	public static ArrayList<Estoque> recuperarTodosProdutos() {
+	public static ArrayList<Estoque> recuperarTodoEstoque() {
 		EstoqueDAOImplTxt listaEstoque = new EstoqueDAOImplTxt();
 
 		return listaEstoque.listarTodos();
-	}
-
-	public static List<Estoque> recuperarTodoEstoque() {
-		JOptionPane.showMessageDialog(null, "Estes são os produtos do estoque: \n" + EstoqueDAOImplTxt.class,
-				"Produtos", JOptionPane.ERROR_MESSAGE);
-		return null;
 	}
 
 	public static void removerProdutoEstoque(Produto produto) {
