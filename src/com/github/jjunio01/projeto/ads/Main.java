@@ -120,7 +120,7 @@ public class Main {
 									} else {
 										for (int i = 0; i < estoqueDisponivel.size(); i++) {
 											estoqueTela += "Produto: " + estoqueDisponivel.get(i).getProduto().getNome()
-													+ " possui " + estoqueDisponivel.get(i).getQuantidadeProduto();
+													+ " possui " + estoqueDisponivel.get(i).getQuantidadeProduto()
 													+ " unidades no estoque.";
 										}
 									}
