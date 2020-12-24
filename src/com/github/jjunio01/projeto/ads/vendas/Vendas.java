@@ -2,6 +2,7 @@ package com.github.jjunio01.projeto.ads.vendas;
 
 import javax.swing.JOptionPane;
 
+import com.github.jjunio01.projeto.ads.database.EstoqueDAOImplTxt;
 import com.github.jjunio01.projeto.ads.entidades.Pessoa;
 import com.github.jjunio01.projeto.ads.pagamento.EnumPag;
 import com.github.jjunio01.projeto.ads.pagamento.PagamentoDinheiro;
@@ -33,17 +34,25 @@ public class Vendas {
 	public void efetivarVenda(EnumPag tipoPagamento, double valorPago) {
 
 		if (tipoPagamento == EnumPag.CARTAO) {
+			EstoqueDAOImplTxt daoEstoque = new EstoqueDAOImplTxt();
 			PagamentoCartao pagamentoRealizado = new PagamentoCartao();
 			if (pagamentoRealizado.realizarPagamento(carrinho.getPrecoTotal(), cliente, tipoPagamento)) {
 				this.status = EnumVenda.EFETIVADA;
+				for (int i = 0; i < this.carrinho.getListaProdutos().size(); i++) {
+					daoEstoque.atualizarQuantidade(this.carrinho.getListaProdutos().get(i), this.carrinho.getListaProdutos().get(i).getQuantidadeProduto());
+				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Limite insuficiente no cartão", "Status de Pagamento",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		} else if (tipoPagamento == EnumPag.DINHEIRO) {
+			EstoqueDAOImplTxt daoEstoque = new EstoqueDAOImplTxt();
 			PagamentoDinheiro pagamentoRealizado = new PagamentoDinheiro();
 			if (pagamentoRealizado.realizarPagamento(carrinho.getPrecoTotal(), cliente, tipoPagamento, valorPago)) {
 				this.status = EnumVenda.EFETIVADA;
+				for (int i = 0; i < this.carrinho.getListaProdutos().size(); i++) {
+					daoEstoque.atualizarQuantidade(this.carrinho.getListaProdutos().get(i), this.carrinho.getListaProdutos().get(i).getQuantidadeProduto());
+				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Valor pago menor que o valor da compra"
 						+ ""

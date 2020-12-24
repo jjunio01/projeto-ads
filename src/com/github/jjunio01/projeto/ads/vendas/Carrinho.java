@@ -58,4 +58,12 @@ public class Carrinho {
 		return carrinho;
 	}
 
+	public ArrayList<Estoque> getListaProdutos() {
+		return listaProdutos;
+	}
+
+	public void setListaProdutos(ArrayList<Estoque> listaProdutos) {
+		this.listaProdutos = listaProdutos;
+	}
+
 }
