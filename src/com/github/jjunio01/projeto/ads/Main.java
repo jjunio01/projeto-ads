@@ -119,8 +119,8 @@ public class Main {
 												JOptionPane.ERROR_MESSAGE);
 									} else {
 										for (int i = 0; i < estoqueDisponivel.size(); i++) {
-											estoqueTela += "Produto: " + estoqueDisponivel.get(i).getProduto().getNome()
-													+ " possui " + estoqueDisponivel.get(i).getQuantidadeProduto()
+											estoqueTela += "Produto: " + estoqueDisponivel.get(i).getProduto().getNome()+ "\n"
+													+ " possui " + estoqueDisponivel.get(i).getQuantidadeProduto()+ "\n"
 													+ " unidades no estoque.";
 										}
 									}
