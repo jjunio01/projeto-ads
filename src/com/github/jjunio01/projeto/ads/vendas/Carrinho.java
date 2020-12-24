@@ -15,6 +15,12 @@ public class Carrinho {
 	private double precoTotal;
 	private int quantidade;
 
+	public Carrinho(ArrayList<Produto> listaProdutos, int quantidade) {
+		this.listaProdutos = listaProdutos;
+		this.quantidade = quantidade;
+		calcularPrecoTotal();
+	}
+
 	public void pegarCarrinho() {
 		listaProdutos = new ArrayList<>();
 		precoTotal = 0.0;
@@ -46,12 +52,13 @@ public class Carrinho {
 	@Override
 	public String toString() {
 		NumberFormat numeroFormatado = NumberFormat.getCurrencyInstance();
-		
+
 		String carrinho = "";
 
 		for (int i = 0; i < this.listaProdutos.size(); i++) {
 			carrinho += "Nome: " + this.listaProdutos.get(i).getNome() + "\nValor unitário R$: "
-					+ numeroFormatado.format(this.listaProdutos.get(i).getPreco()) + "\nQuantidade :" + this.quantidade + "\n";
+					+ numeroFormatado.format(this.listaProdutos.get(i).getPreco()) + "\nQuantidade :" + this.quantidade
+					+ "\n";
 		}
 
 		return carrinho;
