@@ -177,7 +177,7 @@ public class Main {
 									Estoque estoqueRecuperado = recuperarEstoque();
 									if (estoqueRecuperado != null) {
 										JOptionPane.showMessageDialog(null, estoqueRecuperado.toString(), "Estoque",
-												JOptionPane.ERROR_MESSAGE);
+												JOptionPane.INFORMATION_MESSAGE);
 
 									} else {
 										JOptionPane.showMessageDialog(null, "Produto não cadastrado no estoque",
