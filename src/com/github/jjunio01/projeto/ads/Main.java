@@ -2,6 +2,7 @@ package com.github.jjunio01.projeto.ads;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
@@ -19,7 +20,9 @@ import com.github.jjunio01.projeto.ads.estoque.Estoque;
 import com.github.jjunio01.projeto.ads.estoque.Produto;
 import com.github.jjunio01.projeto.ads.pagamento.CartaoCredito;
 import com.github.jjunio01.projeto.ads.pagamento.EnumBandeira;
+import com.github.jjunio01.projeto.ads.pagamento.EnumPag;
 import com.github.jjunio01.projeto.ads.vendas.Carrinho;
+import com.github.jjunio01.projeto.ads.vendas.Vendas;
 
 /**
  * @author JJunio
@@ -50,6 +53,7 @@ public class Main {
 					int quantidade = 0;
 					ArrayList<Estoque> listaProdutos = new ArrayList<>();
 					Carrinho carrinho = new Carrinho(listaProdutos);
+					Vendas venda = new Vendas(carrinho);
 					boolean preenchendoCarrinho = true;
 
 					do {
@@ -76,9 +80,40 @@ public class Main {
 						while (true) {
 							String novamente = JOptionPane.showInputDialog("Deseja comparar novamente Sim/Não:");
 							if (novamente.equals("Não")) {
-
 								preenchendoCarrinho = false;
-								break;
+								while (true) {
+
+									Object[] itens = { EnumPag.CARTAO, EnumPag.DINHEIRO };
+									EnumPag tipoPag = (EnumPag) JOptionPane.showInputDialog(null,
+											"Escolha o tipo de pagamento", "Pagamento", JOptionPane.INFORMATION_MESSAGE,
+											null, itens, itens[0]);
+									String nomePessoaPag = JOptionPane.showInputDialog(null,
+											"Escolha o tipo de pagamento", "Pagamento",
+											JOptionPane.INFORMATION_MESSAGE);
+									Pessoa pessoa = recuperarPessoa();
+									if (EnumPag.DINHEIRO.equals(tipoPag)) {
+										double valorPago = 0;
+										while (true) {
+											try {
+												valorPago = Double.parseDouble(
+														JOptionPane.showInputDialog("Informe o valor a ser pago"));
+												venda.efetivarVenda(tipoPag, valorPago);
+
+												break;
+											} catch (Exception e) {
+
+												JOptionPane.showMessageDialog(null, "Dgite um valor v�lido",
+														"Valores numerico, Ex. 47.02", JOptionPane.ERROR_MESSAGE);
+
+											}
+										}
+									} else {
+
+										venda.efetivarVenda(tipoPag, pessoa.getCartaocredito().getLimite());
+									}
+
+								}
+
 							} else if (novamente.equals("Sim")) {
 								break;
 							} else {
