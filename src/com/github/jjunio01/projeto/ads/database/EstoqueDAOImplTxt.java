@@ -150,8 +150,10 @@ public class EstoqueDAOImplTxt implements EstoqueDAO {
 		ArrayList<Estoque> estoqueDisponivel = listarTodos();
 
 		Estoque estoqueRecuperado = consultar(estoque.getCodigo());
-		estoqueRecuperado.setQuantidadeProduto(quantidade);
-		estoqueDisponivel.add(estoqueRecuperado);
+		estoqueDisponivel.remove(estoqueRecuperado);
+		Estoque atual = estoque;
+		atual.setQuantidadeProduto(quantidade);
+		estoqueDisponivel.add(atual);
 		try {
 			FileUtil.gravarInformacoes(estoqueDisponivel, caminho);
 		} catch (IOException e) {

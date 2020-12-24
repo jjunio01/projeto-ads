@@ -38,8 +38,7 @@ public class Main {
 
 		while (executando) {
 			String menu = JOptionPane.showInputDialog(null,
-					"#1 - Realizar Cadastro\n" + "#2 - Comprar\n" + "#3 - - Gerenciar Estoque \n"
-							+  "#0 - Sair",
+					"#1 - Realizar Cadastro\n" + "#2 - Comprar\n" + "#3 - - Gerenciar Estoque \n" + "#0 - Sair",
 					"Sistema CompreAqui", JOptionPane.QUESTION_MESSAGE);
 			if (menu == null) {
 				break;
@@ -130,7 +129,7 @@ public class Main {
 
 					} while (preenchendoCarrinho);
 					break;
-				
+
 				case "3":
 
 					String login = JOptionPane.showInputDialog("Digite o seu login:");
@@ -146,7 +145,7 @@ public class Main {
 							if (senha.equals(usuario.getSenha())) {
 
 								String opcao = JOptionPane.showInputDialog(null,
-										"Informe a opÃƒÂ§ÃƒÂ£o desejada! \n #1 Consultar Todo Estoque \n #2 Cadastrar no Estoque \n #3 Consultar Produto do Estoque \n #4 Retirar do Estoque \n #0 Sair",
+										"Informe a opÃƒÂ§ÃƒÂ£o desejada! \n #1 Consultar Todo Estoque \n #2 Cadastrar no Estoque \n #3 Consultar Produto do Estoque \n #4 Adicionar no Estoque \n #0 Sair",
 										JOptionPane.QUESTION_MESSAGE);
 
 								if (opcao.equals("1")) {
@@ -413,11 +412,11 @@ public class Main {
 	public static void atualizarProdutoEstoque() {
 		EstoqueDAOImplTxt daoProduto = new EstoqueDAOImplTxt();
 		try {
-			int id = Integer.parseInt(JOptionPane.showInputDialog("Informe o ID produto que deseja remover:"));
+			int id = Integer.parseInt(JOptionPane.showInputDialog("Informe o ID produto que deseja adicionar:"));
 			Estoque idRemocao = recuperarProdutoId(id);
 
 			double quantidadeRemovidaUsuario = Double
-					.parseDouble(JOptionPane.showInputDialog("Informe a quantidade do produto que deseja remover:"));
+					.parseDouble(JOptionPane.showInputDialog("Informe a quantidade do produto que deseja adicionar:"));
 			if (quantidadeRemovidaUsuario <= idRemocao.getQuantidadeProduto()) {
 				daoProduto.atualizarQuantidade(idRemocao, quantidadeRemovidaUsuario);
 				JOptionPane.showMessageDialog(null, "Quantidade de produtos atualizada com sucesso! "
