@@ -78,17 +78,16 @@ public class Main {
 							break;
 						}
 						while (true) {
-							String novamente = JOptionPane.showInputDialog("Deseja comparar novamente Sim/NÃ£o:");
-							if (novamente.equals("NÃ£o")) {
+							String novamente = JOptionPane.showInputDialog("Deseja adicionar mais produtos: Sim/Não:");
+							if (novamente.equals("Não")) {
 								preenchendoCarrinho = false;
+								Object[] itens = { EnumPag.CARTAO, EnumPag.DINHEIRO };
 								while (true) {
-
-									Object[] itens = { EnumPag.CARTAO, EnumPag.DINHEIRO };
 									EnumPag tipoPag = (EnumPag) JOptionPane.showInputDialog(null,
 											"Escolha o tipo de pagamento", "Pagamento", JOptionPane.INFORMATION_MESSAGE,
 											null, itens, itens[0]);
 									String nomePessoaPag = JOptionPane.showInputDialog(null,
-											"Escolha o tipo de pagamento", "Pagamento",
+											"Digite seu nome", "Pagamento",
 											JOptionPane.INFORMATION_MESSAGE);
 									Pessoa pessoa = recuperarPessoa();
 									if (EnumPag.DINHEIRO.equals(tipoPag)) {
@@ -98,17 +97,15 @@ public class Main {
 												valorPago = Double.parseDouble(
 														JOptionPane.showInputDialog("Informe o valor a ser pago"));
 												venda.efetivarVenda(tipoPag, valorPago);
-
 												break;
 											} catch (Exception e) {
 
 												JOptionPane.showMessageDialog(null, "Dgite um valor válido",
 														"Valores numerico, Ex. 47.02", JOptionPane.ERROR_MESSAGE);
-
 											}
 										}
 									} else {
-
+										venda.setCliente(pessoa);
 										venda.efetivarVenda(tipoPag, pessoa.getCartaocredito().getLimite());
 									}
 

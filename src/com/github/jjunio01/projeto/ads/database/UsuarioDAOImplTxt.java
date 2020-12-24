@@ -24,7 +24,7 @@ public class UsuarioDAOImplTxt implements UsuarioDAO {
 			listaUsuarios.add(usuario);
 			try {
 				FileUtil.gravarInformacoes(listaUsuarios, caminho);
-				JOptionPane.showMessageDialog(null, "Cadastro realizado com Sucesso.", "Sistema CompreAqui",
+				JOptionPane.showMessageDialog(null, "Usuario cadastro realizado com Sucesso.", "Sistema CompreAqui",
 						JOptionPane.INFORMATION_MESSAGE);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
