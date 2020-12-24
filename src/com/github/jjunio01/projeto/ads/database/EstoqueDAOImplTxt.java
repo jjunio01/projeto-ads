@@ -48,7 +48,6 @@ public class EstoqueDAOImplTxt implements EstoqueDAO {
 
 	}
 
-
 	@Override
 	public ArrayList<Estoque> listarTodos() {
 		try {
@@ -61,8 +60,6 @@ public class EstoqueDAOImplTxt implements EstoqueDAO {
 			return null;
 		}
 	}
-
-
 
 	public Estoque consultar(String nomeProduto) {
 
@@ -84,33 +81,84 @@ public class EstoqueDAOImplTxt implements EstoqueDAO {
 		return null;
 	}
 
-
 	@Override
 	public void atualizar(Estoque t) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 	@Override
 	public void adicionarLista(ArrayList<Estoque> t) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 	@Override
 	public Estoque consultar(int codigo) {
-		// TODO Auto-generated method stub
+
+		ArrayList<Estoque> estoqueDisponivel = listarTodos();
+
+		if (estoqueDisponivel == null) {
+
+			JOptionPane.showMessageDialog(null, "Não existe produtos no estoque", "Sistema CompreAqui",
+					JOptionPane.ERROR_MESSAGE);
+		} else {
+
+			for (int i = 0; i < estoqueDisponivel.size(); i++) {
+				if (estoqueDisponivel.get(i).getProduto().getId() == codigo) {
+					return estoqueDisponivel.get(i);
+				}
+			}
+
+		}
 		return null;
 	}
 
-
 	@Override
 	public void remover(Estoque estoque) {
-		// TODO Auto-generated method stub
+		
+		ArrayList<Estoque> estoqueDisponivel = listarTodos();
+
+		if (estoqueDisponivel != null) {
+			Estoque estoqueRecuperado = consultar(estoque.getCodigo());
+			estoqueDisponivel.remove(estoqueRecuperado);
+			try {
+				FileUtil.gravarInformacoes(estoqueDisponivel, caminho);
+				JOptionPane.showMessageDialog(null, "Produto adicionado ao estoque com sucesso.", "Sistema CompreAqui",
+						JOptionPane.INFORMATION_MESSAGE);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			ArrayList<Estoque> novoEstoque = new ArrayList();
+			novoEstoque.add(estoque);
+			try {
+				FileUtil.gravarInformacoes(novoEstoque, caminho);
+				JOptionPane.showMessageDialog(null, "Cadastro realizado com Sucesso.", "Sistema CompreAqui",
+						JOptionPane.INFORMATION_MESSAGE);
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 	}
 
+	public void atualizarQuantidade(Estoque estoque, int quantidade) {
+		ArrayList<Estoque> estoqueDisponivel = listarTodos();
+
+		Estoque estoqueRecuperado = consultar(estoque.getCodigo());
+		estoqueRecuperado.setQuantidadeProduto(quantidade);
+		estoqueDisponivel.add(estoqueRecuperado);
+		try {
+			FileUtil.gravarInformacoes(estoqueDisponivel, caminho);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 }
