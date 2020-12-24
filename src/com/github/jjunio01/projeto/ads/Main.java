@@ -148,7 +148,8 @@ public class Main {
 								} else if (opcao.equals("0")) {
 									logado = false;
 								} else {
-									JOptionPane.showMessageDialog(null, "Selecione uma opÃƒÂ§ÃƒÂ£o vÃƒÂ¡lida!", "Erro",
+									JOptionPane.showMessageDialog(null,
+											"Selecione uma opÃƒÂ§ÃƒÂ£o vÃƒÂ¡lida!", "Erro",
 											JOptionPane.ERROR_MESSAGE);
 								}
 
@@ -197,7 +198,21 @@ public class Main {
 		EnumBandeira bandeira = (EnumBandeira) JOptionPane.showInputDialog(null, "Escolha a bandeira do cartÃƒÂ£o",
 				"OpÃƒÂ§ao", JOptionPane.INFORMATION_MESSAGE, null, itens, itens[0]);
 		String numeroCartao = JOptionPane.showInputDialog("Digite o nÃƒÂºmero do seu cartÃƒÂ£o:");
-		double limite = Double.parseDouble(JOptionPane.showInputDialog("Limite:"));
+		double limite = 0;
+		while (true) {
+			try {
+				limite = Double.parseDouble(JOptionPane.showInputDialog("Informe o preÃƒÂ§o do produto:"));
+				int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do produto:"));
+
+				break;
+			} catch (Exception e) {
+
+				JOptionPane.showMessageDialog(null,
+						"ForneÃ¯Â¿Â½a uma informaÃ¯Â¿Â½Ã¯Â¿Â½o vÃ¯Â¿Â½lida!",
+						"Valores numÃ¯Â¿Â½ricos Ex. 47.02", JOptionPane.ERROR_MESSAGE);
+
+			}
+		}
 		String cvv = JOptionPane.showInputDialog("CVV (CÃƒÂ³digo por trÃƒÂ¡s do cartÃƒÂ£o):");
 		String nomeCartao = JOptionPane.showInputDialog("Digite o nome presente cartÃƒÂ£o:");
 		String validade = JOptionPane.showInputDialog("Validade:");
@@ -228,8 +243,8 @@ public class Main {
 		String descricao = JOptionPane.showInputDialog("Digite a descriÃƒÂ§ÃƒÂ£o do produto:");
 		String ean = JOptionPane.showInputDialog("Digite o cÃƒÂ³digo ean do produto:");
 		EnunUnidadeMedida unidadeMedida = (EnunUnidadeMedida) JOptionPane.showInputDialog(null,
-				"Informe a Unidade de Medida do Produto", "OpÃƒÂ§ao", JOptionPane.INFORMATION_MESSAGE, null, medidas,
-				medidas[5]);
+				"Informe a Unidade de Medida do Produto", "OpÃƒÂ§ao", JOptionPane.INFORMATION_MESSAGE, null,
+				medidas, medidas[5]);
 
 		while (true) {
 			try {
@@ -239,7 +254,8 @@ public class Main {
 				break;
 			} catch (Exception e) {
 
-				JOptionPane.showMessageDialog(null, "ForneÃ¯Â¿Â½a uma informaÃ¯Â¿Â½Ã¯Â¿Â½o vÃ¯Â¿Â½lida!",
+				JOptionPane.showMessageDialog(null,
+						"ForneÃ¯Â¿Â½a uma informaÃ¯Â¿Â½Ã¯Â¿Â½o vÃ¯Â¿Â½lida!",
 						"Valores numÃ¯Â¿Â½ricos Ex. 47.02", JOptionPane.ERROR_MESSAGE);
 
 			}
@@ -261,7 +277,8 @@ public class Main {
 		String descricao = JOptionPane.showInputDialog("Digite a descriÃƒÂ§ÃƒÂ£o do produto:");
 		String ean = JOptionPane.showInputDialog("Digite o ean do produto:");
 		EnunUnidadeMedida unidadeMedida = (EnunUnidadeMedida) JOptionPane.showInputDialog(null,
-				"Escolha a unidade mÃ©dida", "OpÃ§Ãµes", JOptionPane.INFORMATION_MESSAGE, null, medidas, medidas[0]);
+				"Escolha a unidade mÃ©dida", "OpÃ§Ãµes", JOptionPane.INFORMATION_MESSAGE, null, medidas,
+				medidas[0]);
 
 		while (true) {
 			try {
@@ -346,7 +363,7 @@ public class Main {
 	}
 
 	public static ArrayList<Estoque> recuperarTodoEstoque() {
-    
+
 		EstoqueDAOImplTxt listaEstoque = new EstoqueDAOImplTxt();
 
 		return listaEstoque.listarTodos();
