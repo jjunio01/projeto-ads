@@ -120,11 +120,12 @@ public class Main {
 									} else {
 										for (int i = 0; i < estoqueDisponivel.size(); i++) {
 											estoqueTela += "Produto: " + estoqueDisponivel.get(i).getProduto().getNome()
-													+ " possui " + estoqueDisponivel.get(i).getProduto().getNome()
+													+ " possui " + estoqueDisponivel.get(i).getQuantidadeProduto();
 													+ " unidades no estoque.";
 										}
 									}
-
+									JOptionPane.showMessageDialog(null, estoqueTela, "Estoque total :",
+											JOptionPane.INFORMATION_MESSAGE);
 								} else if (opcao.equals("2")) {
 
 									cadastrarEstoque();
