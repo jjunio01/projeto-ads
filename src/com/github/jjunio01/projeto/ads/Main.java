@@ -94,11 +94,40 @@ public class Main {
 
 					boolean logado = true;
 
+<<<<<<< HEAD
 					while (logado) {
 
 						if (usuario != null) {
 							String senha = JOptionPane.showInputDialog("Digite o sua senha");
 							if (senha.equals(usuario.getSenha())) {
+=======
+							String opcao = JOptionPane.showInputDialog(null,
+									"Informe a opÃ§Ã£o desejada! \n #1 Cadastrar Produto \n #2 Cadastrar no Estoque \n #3 Consultar Estoque \n #4 Retirar do Estoque \n #0 Sair",
+									JOptionPane.QUESTION_MESSAGE);
+
+							if (opcao.equals("1")) {
+
+								cadastrarProduto();
+
+							} else if (opcao.equals("2")) {
+
+								cadastrarEstoque();
+
+							} else if (opcao.equals("3")) {
+
+								recuperarTodoEstoque();
+
+							} else if (opcao.equals("4")) {
+
+								// removerProdutoEstoque();
+
+							} else if (opcao.equals("0")) {
+
+							} else {
+								JOptionPane.showMessageDialog(null, "Selecione uma opÃ§Ã£o vÃ¡lida!", "Erro",
+										JOptionPane.ERROR_MESSAGE);
+							}
+>>>>>>> b26b942 (recuperar todo estoque e atualização de dados)
 
 								String opcao = JOptionPane.showInputDialog(null,
 										"Informe a opÃ§Ã£o desejada! \n #1 Consultar Todo Estoque \n #2 Cadastrar no Estoque \n #3 Consultar Estoque \n #4 Retirar do Estoque \n #0 Sair",
@@ -282,6 +311,7 @@ public class Main {
 		return usuarioCadastrado;
 	}
 
+<<<<<<< HEAD
 	public static Produto recuperarProdutoNome(String nome) {
 		EstoqueDAOImplTxt produtoNome = new EstoqueDAOImplTxt();
 
@@ -291,6 +321,31 @@ public class Main {
 	public static Produto recuperarProdutoId(int id) {
 
 		return null;
+=======
+	public static Estoque recuperarProdutoNome(String nome) {
+		EstoqueDAOImplTxt daoProduto = new EstoqueDAOImplTxt();
+		Estoque produtoCadastrado = daoProduto.consultar(nome);
+
+		return produtoCadastrado;
+	}
+
+	public static Estoque recuperarProdutoId(int id) {
+		Estoque idCadastrado = null;
+
+		try {
+			int idProduto = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Produto:"));
+			EstoqueDAOImplTxt daoProduto = new EstoqueDAOImplTxt();
+			 idCadastrado = daoProduto.consultar(idProduto);
+
+		} catch (Exception e) {
+
+			JOptionPane.showMessageDialog(null, "Forne�a uma informa��o v�lida!!", "Valores num�ricos Ex. 4702",
+					JOptionPane.ERROR_MESSAGE);
+		}
+
+		
+		return idCadastrado;
+>>>>>>> b26b942 (recuperar todo estoque e atualização de dados)
 	}
 
 	public static Estoque recuperarEstoque() {
@@ -315,10 +370,13 @@ public class Main {
 		return listaUsuarios.listarTodos();
 	}
 
-	public static ArrayList<Estoque> recuperarTodosProdutos() {
+	
+
+	public static ArrayList<Estoque> recuperarTodoEstoque() {
 		EstoqueDAOImplTxt listaEstoque = new EstoqueDAOImplTxt();
 
 		return listaEstoque.listarTodos();
+<<<<<<< HEAD
 	}
 
 	public static List<Estoque> recuperarTodoEstoque() {
@@ -327,6 +385,12 @@ public class Main {
 		return null;
 	}
 
+=======
+		
+		
+	}
+
+>>>>>>> b26b942 (recuperar todo estoque e atualização de dados)
 	public static void removerProdutoEstoque(Produto produto) {
 		int id = Integer.parseInt(JOptionPane.showInputDialog("Informe o ID produto que deseja remover:"));
 		recuperarProdutoId(id);
