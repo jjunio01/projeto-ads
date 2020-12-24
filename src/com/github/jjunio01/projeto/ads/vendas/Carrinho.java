@@ -39,6 +39,7 @@ public class Carrinho {
 	}
 
 	public double getPrecoTotal() {
+		calcularPrecoTotal();
 		return precoTotal;
 	}
 

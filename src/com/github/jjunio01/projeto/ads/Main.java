@@ -77,7 +77,8 @@ public class Main {
 									JOptionPane.ERROR_MESSAGE);
 							break;
 						}
-						while (true) {
+						boolean addProd = true;
+						while (addProd) {
 							String novamente = JOptionPane.showInputDialog("Deseja adicionar mais produtos: Sim/Não:");
 							if (novamente.equals("Não")) {
 								preenchendoCarrinho = false;
@@ -87,29 +88,34 @@ public class Main {
 									EnumPag tipoPag = (EnumPag) JOptionPane.showInputDialog(null,
 											"Escolha o tipo de pagamento", "Pagamento", JOptionPane.INFORMATION_MESSAGE,
 											null, itens, itens[0]);
-									String nomePessoaPag = JOptionPane.showInputDialog(null, "Digite seu nome",
-											"Pagamento", JOptionPane.INFORMATION_MESSAGE);
 									Pessoa pessoa = recuperarPessoa();
-									if (EnumPag.DINHEIRO.equals(tipoPag)) {
-										double valorPago = 0;
-										while (true) {
-											try {
-												valorPago = Double.parseDouble(
-														JOptionPane.showInputDialog("Informe o valor a ser pago"));
-												venda.efetivarVenda(tipoPag, valorPago);
-												emPagamento = false;
-												break;
-											} catch (Exception e) {
+									if (pessoa != null) {
+										if (EnumPag.DINHEIRO.equals(tipoPag)) {
+											double valorPago = 0;
+											while (true) {
+												try {
+													valorPago = Double.parseDouble(
+															JOptionPane.showInputDialog("Informe o valor a ser pago"));
+													venda.efetivarVenda(tipoPag, valorPago);
+													emPagamento = false;
+													addProd = false;
+													break;
+												} catch (Exception e) {
 
-												JOptionPane.showMessageDialog(null, "Dgite um valor válido",
-														"Valores numerico, Ex. 47.02", JOptionPane.ERROR_MESSAGE);
+													JOptionPane.showMessageDialog(null, "Dgite um valor válido",
+															"Valores numerico, Ex. 47.02", JOptionPane.ERROR_MESSAGE);
+												}
 											}
+										} else {
+											venda.setCliente(pessoa);
+											venda.efetivarVenda(tipoPag, venda.getCarrinho().getPrecoTotal());
+											emPagamento = false;
+											addProd = false;
+											break;
 										}
 									} else {
-										venda.setCliente(pessoa);
-										venda.efetivarVenda(tipoPag, venda.getCarrinho().getPrecoTotal());
-										emPagamento = false;
-										break;
+										JOptionPane.showMessageDialog(null, "Cliente não cadastrado", "Erro",
+												JOptionPane.ERROR_MESSAGE);
 									}
 
 								}
