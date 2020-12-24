@@ -10,7 +10,7 @@ public class PagamentoCartao {
 		if (cliente.getCartaocredito().getLimite() >= valorTotal) {
 			double pagamento = cliente.getCartaocredito().getLimite() - valorTotal;
 			cliente.getCartaocredito().setLimite(pagamento);
-			JOptionPane.showMessageDialog(null, "Compra realizado com sucesso", "Status de Pagamento",
+			JOptionPane.showMessageDialog(null, "Compra realizada com sucesso", "Status de Pagamento",
 					JOptionPane.INFORMATION_MESSAGE);
 			return true;
 		}

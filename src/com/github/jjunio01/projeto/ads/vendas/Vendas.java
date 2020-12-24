@@ -1,5 +1,7 @@
 package com.github.jjunio01.projeto.ads.vendas;
 
+import javax.swing.JOptionPane;
+
 import com.github.jjunio01.projeto.ads.entidades.Pessoa;
 import com.github.jjunio01.projeto.ads.pagamento.EnumPag;
 import com.github.jjunio01.projeto.ads.pagamento.PagamentoDinheiro;
@@ -34,11 +36,19 @@ public class Vendas {
 			PagamentoCartao pagamentoRealizado = new PagamentoCartao();
 			if (pagamentoRealizado.realizarPagamento(carrinho.getPrecoTotal(), cliente, tipoPagamento)) {
 				this.status = EnumVenda.EFETIVADA;
+			} else {
+				JOptionPane.showMessageDialog(null, "Limite insuficiente no cartão", "Status de Pagamento",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		} else if (tipoPagamento == EnumPag.DINHEIRO) {
 			PagamentoDinheiro pagamentoRealizado = new PagamentoDinheiro();
 			if (pagamentoRealizado.realizarPagamento(carrinho.getPrecoTotal(), cliente, tipoPagamento, valorPago)) {
 				this.status = EnumVenda.EFETIVADA;
+			} else {
+				JOptionPane.showMessageDialog(null, "Valor pago menor que o valor da compra"
+						+ ""
+						+ "1", "Status de Pagamento",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 	}
