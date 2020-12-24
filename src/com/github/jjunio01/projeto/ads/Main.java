@@ -290,9 +290,25 @@ public class Main {
 		return null;
 	}
 
-	public static Produto recuperarProdutoId(int id) {
+	
+	public static Estoque recuperarProdutoId(int id) {
+			Estoque idCadastrado = null;
 
-		return null;
+			try {
+				int idProduto = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Produto:"));
+				EstoqueDAOImplTxt daoProduto = new EstoqueDAOImplTxt();
+				 idCadastrado = daoProduto.consultar(idProduto);
+
+			} catch (Exception e) {
+
+				JOptionPane.showMessageDialog(null, "Forneça uma informação válida!!", "Valores numéricos Ex. 4702",
+						JOptionPane.ERROR_MESSAGE);
+			}
+
+			
+			return idCadastrado;
+
+		
 	}
 
 	public static Estoque recuperarEstoque() {
