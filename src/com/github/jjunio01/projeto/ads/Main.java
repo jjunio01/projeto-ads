@@ -19,10 +19,13 @@ import com.github.jjunio01.projeto.ads.estoque.Estoque;
 import com.github.jjunio01.projeto.ads.estoque.Produto;
 import com.github.jjunio01.projeto.ads.pagamento.CartaoCredito;
 import com.github.jjunio01.projeto.ads.pagamento.EnumBandeira;
+import com.github.jjunio01.projeto.ads.vendas.Carrinho;
 
 /**
  * @author JJunio
- *
+ * @author Édrey Lucas
+ * @author Mikael C. Barros
+ * @author Petterson		 
  */
 public class Main {
 
@@ -44,22 +47,56 @@ public class Main {
 					cadastrarPessoa();
 					break;
 				case "2":
-					cadastrarEstoque();
-					break;
+					int quantidade;
+					Carrinho carrinho = new Carrinho(Arraylist<Produto>listaProdutos, int quantidade); 
+					boolean preenchendoCarrinho = true;
+					
+					do {
+						
+						Estoque estoqueRecuperado = recuperarEstoque();
+						if (estoqueRecuperado != null) {
+							JOptionPane.showMessageDialog(null, estoqueRecuperado.toString(), "Estoque",
+									JOptionPane.ERROR_MESSAGE);
+							try {
+								quantidade = Integer
+										.parseInt(JOptionPane.showInputDialog("Digite a quantidade desejada: "));
+								carrinho.add(estoqueRecuperado.setQuantidadeProduto(quantidade));
+								
+							} catch (Exception e) {
+								JOptionPane.showMessageDialog(null, "Digite apenas números", "Erro",
+										JOptionPane.ERROR_MESSAGE);
+							}
+
+						} else {
+							JOptionPane.showMessageDialog(null, "Produto não cadastrado no estoque", "Estoque",
+									JOptionPane.ERROR_MESSAGE);
+							break;
+						}
+						String novamente = JOptionPane.showInputDialog("Deseja comparar novamente Sim/Não:");
+						
+						if (novamente.equals("Não")) {
+							
+							preenchendoCarrinho = false;
+							
+						}
+						
+					}while (preenchendoCarrinho);
+						
+						
+		
 				case "3":
 					cadastrarUsuario();
 
 					break;
 				case "4":
-					
+
 					String login = JOptionPane.showInputDialog("Digite o seu login:");
 
 					Usuario usuario = recuperarUsuario(login);
-					
+
 					boolean logado = true;
-					
+
 					while (logado) {
-						
 
 						if (usuario != null) {
 							String senha = JOptionPane.showInputDialog("Digite o sua senha");
@@ -122,7 +159,7 @@ public class Main {
 							logado = false;
 						}
 					}
-					
+
 					break;
 
 				case "5":
@@ -263,9 +300,25 @@ public class Main {
 		return null;
 	}
 
-	public static Produto recuperarProdutoId(int id) {
+	
+	public static Estoque recuperarProdutoId(int id) {
+			Estoque idCadastrado = null;
 
-		return null;
+			try {
+				int idProduto = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Produto:"));
+				EstoqueDAOImplTxt daoProduto = new EstoqueDAOImplTxt();
+				 idCadastrado = daoProduto.consultar(idProduto);
+
+			} catch (Exception e) {
+
+				JOptionPane.showMessageDialog(null, "Forneça uma informação válida!!", "Valores numéricos Ex. 4702",
+						JOptionPane.ERROR_MESSAGE);
+			}
+
+			
+			return idCadastrado;
+
+		
 	}
 
 	public static Estoque recuperarEstoque() {
@@ -294,6 +347,7 @@ public class Main {
 		EstoqueDAOImplTxt listaEstoque = new EstoqueDAOImplTxt();
 
 		return listaEstoque.listarTodos();
+
 	}
 
 	public static void removerProdutoEstoque(Produto produto) {
