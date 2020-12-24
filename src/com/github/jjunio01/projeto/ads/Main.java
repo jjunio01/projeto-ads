@@ -25,7 +25,7 @@ import com.github.jjunio01.projeto.ads.vendas.Carrinho;
  * @author JJunio
  * @author Édrey Lucas
  * @author Mikael C. Barros
- * @author Petterson		 
+ * @author Petterson
  */
 public class Main {
 
@@ -290,25 +290,22 @@ public class Main {
 		return null;
 	}
 
-	
 	public static Estoque recuperarProdutoId(int id) {
-			Estoque idCadastrado = null;
+		Estoque idCadastrado = null;
 
-			try {
-				int idProduto = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Produto:"));
-				EstoqueDAOImplTxt daoProduto = new EstoqueDAOImplTxt();
-				 idCadastrado = daoProduto.consultar(idProduto);
+		try {
+			int idProduto = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID do Produto:"));
+			EstoqueDAOImplTxt daoProduto = new EstoqueDAOImplTxt();
+			idCadastrado = daoProduto.consultar(idProduto);
 
-			} catch (Exception e) {
+		} catch (Exception e) {
 
-				JOptionPane.showMessageDialog(null, "Forneça uma informação válida!!", "Valores numéricos Ex. 4702",
-						JOptionPane.ERROR_MESSAGE);
-			}
+			JOptionPane.showMessageDialog(null, "Forneça uma informação válida!!", "Valores numéricos Ex. 4702",
+					JOptionPane.ERROR_MESSAGE);
+		}
 
-			
-			return idCadastrado;
+		return idCadastrado;
 
-		
 	}
 
 	public static Estoque recuperarEstoque() {
@@ -333,20 +330,30 @@ public class Main {
 		return listaUsuarios.listarTodos();
 	}
 
-
 	public static List<Estoque> recuperarTodoEstoque() {
 		EstoqueDAOImplTxt listaEstoque = new EstoqueDAOImplTxt();
 
 		return listaEstoque.listarTodos();
-		
+
 	}
 
-	public static void removerProdutoEstoque(Produto produto) {
-		int id = Integer.parseInt(JOptionPane.showInputDialog("Informe o ID produto que deseja remover:"));
-		recuperarProdutoId(id);
+	public static void removerProdutoEstoque() {
+		EstoqueDAOImplTxt removerProduto = new EstoqueDAOImplTxt();
+		try {
+			int id = Integer.parseInt(JOptionPane.showInputDialog("Informe o ID produto que deseja remover:"));
+			Estoque idRemocao = recuperarProdutoId(id);
 
-		int quantidadeRemovida = Integer
-				.parseInt(JOptionPane.showInputDialog("Informe a quantidade do produto que deseja remover:"));
+			double quantidadeRemovidaUsuario = Double
+					.parseDouble(JOptionPane.showInputDialog("Informe a quantidade do produto que deseja remover:"));
+			removerProduto.remover(idRemocao);
+			JOptionPane.showInputDialog("Produto removido com sucesso!");
+
+		} catch (Exception e) {
+
+			JOptionPane.showMessageDialog(null, "Forneça uma informação válida!!", "Valores numéricos Ex. 47.02",
+					JOptionPane.ERROR_MESSAGE);
+
+		}
 
 	}
 
