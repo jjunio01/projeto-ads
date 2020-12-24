@@ -26,7 +26,7 @@ public class ClienteDAOImplTxt implements ClienteDAO {
 			databaseClientes.add(cliente);
 			try {
 				FileUtil.gravarInformacoes(databaseClientes, caminho);
-				JOptionPane.showMessageDialog(null, "Produto adicionado ao estoque com sucesso.", "Sistema CompreAqui",
+				JOptionPane.showMessageDialog(null, "Cadastro realizado.", "Sistema CompreAqui",
 						JOptionPane.INFORMATION_MESSAGE);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
